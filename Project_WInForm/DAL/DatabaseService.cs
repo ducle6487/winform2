@@ -9,7 +9,7 @@ namespace DAL
 {
     class DatabaseService
     {
-
+        //thay khong
         public const string conStr = "Data Source=DESKTOP-OJM2OE8;Initial Catalog=UserManage;Integrated Security=True";
         SqlConnection con;
         public SqlCommand command;
