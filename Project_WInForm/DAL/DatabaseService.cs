@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class DatabaseService
+    public class DatabaseService
     {
-        //thay khong
-        public const string conStr = "Data Source=DESKTOP-OJM2OE8;Initial Catalog=UserManage;Integrated Security=True";
+
+        public const string conStr = "Data Source=DESKTOP-OJM2OE8;Initial Catalog=WinForm_Project;Integrated Security=True";
         SqlConnection con;
         public SqlCommand command;
 
@@ -85,6 +85,5 @@ namespace DAL
             }
             return true;
         }
-        
     }
 }

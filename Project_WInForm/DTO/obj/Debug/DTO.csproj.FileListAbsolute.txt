@@ -1,6 +1,6 @@
-C:\Users\DELL\Source\Repos\ducle6487\winform2\Project_WInForm\DTO\bin\Debug\DTO.dll
-C:\Users\DELL\Source\Repos\ducle6487\winform2\Project_WInForm\DTO\bin\Debug\DTO.pdb
-C:\Users\DELL\Source\Repos\ducle6487\winform2\Project_WInForm\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
-C:\Users\DELL\Source\Repos\ducle6487\winform2\Project_WInForm\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
-C:\Users\DELL\Source\Repos\ducle6487\winform2\Project_WInForm\DTO\obj\Debug\DTO.dll
-C:\Users\DELL\Source\Repos\ducle6487\winform2\Project_WInForm\DTO\obj\Debug\DTO.pdb
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\DTO\bin\Debug\DTO.dll
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\DTO\bin\Debug\DTO.pdb
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\DTO\obj\Debug\DTO.dll
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\DTO\obj\Debug\DTO.pdb
