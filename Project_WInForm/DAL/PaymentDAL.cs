@@ -73,7 +73,7 @@ namespace DAL
         }
 
         //ham them bill voi infoBill
-        public bool AddBillIncludeInfo(string billID, string accID, DateTime ngaydat, )
+        //public bool AddBillIncludeInfo(string billID, string accID, DateTime ngaydat, )
 
 
 
