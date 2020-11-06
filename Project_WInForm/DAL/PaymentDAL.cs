@@ -73,7 +73,46 @@ namespace DAL
         }
 
         //ham them bill voi infoBill
-        public bool AddBillIncludeInfo(string billID, string accID, DateTime ngaydat, )
+        public bool AddBillIncludeInfo(string billID, string accID, DateTime ngaydat, int ProductID, int soluong, string size, string tonggia)
+        {
+            bool kq = false;
+            string IDbill = "H" + CountingBill() + 1;
+
+            if (AddBill(IDbill, accID, ngaydat))
+            {
+
+                try
+                {
+
+                    string sql = "insert into PaymentInfo values ( @bill, @product, @amount, @size, @total )";
+                    SqlParameter bill = new SqlParameter("@bill", System.Data.SqlDbType.NVarChar);
+                    SqlParameter product = new SqlParameter("@product", System.Data.SqlDbType.Int);
+                    SqlParameter amount = new SqlParameter("@amount", System.Data.SqlDbType.Int);
+                    SqlParameter sizing = new SqlParameter("@size", System.Data.SqlDbType.NVarChar);
+                    SqlParameter total = new SqlParameter("@total", System.Data.SqlDbType.Money);
+
+                    bill.Value = IDbill;
+                    product.Value = ProductID;
+                    amount.Value = soluong;
+                    sizing.Value = size;
+                    total.Value = tonggia;
+
+                    kq = writeDataPars(sql, new[] { bill, product, amount, sizing, total });
+
+
+                }catch(Exception ex)
+                {
+                    ex.ToString();
+                }
+                finally
+                {
+                    closeConnection();
+                }
+
+            }
+
+            return kq;
+        }
 
 
 
