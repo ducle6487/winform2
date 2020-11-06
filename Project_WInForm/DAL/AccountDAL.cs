@@ -140,8 +140,8 @@ namespace DAL
 
 
 
-        //ham dang ky thong account
-        public bool RegisterAccountInfo(string user, string pass, string ten, string diachi, DateTime namsinh, string gioitinh, string sdt)
+        //ham dang ky  account kem thong tin
+        public bool RegisterAccountIncludeInfo(string user, string pass, string ten, string diachi, DateTime namsinh, string gioitinh, string sdt)
         {
 
             bool kq = false;
