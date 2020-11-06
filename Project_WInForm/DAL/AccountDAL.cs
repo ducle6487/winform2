@@ -145,14 +145,14 @@ namespace DAL
         {
 
             bool kq = false;
-            string id = "";
+            
 
             //kiem tra ton tai
-            if (CheckExistAccount(user))
+            if (CheckExistAccount(user)==false)
             {
                 //tao id de add acccount 
                 //co dinh dang Ax, x la so
-                id = "A" + CountingAccount()+1;
+                string id = "A" + CountingAccount()+1;
 
                 if (RegisterAccount(id, user, pass))
                 {
