@@ -12,15 +12,17 @@ namespace DTO
         string accID;
         string tenKH;
         string diachi;
-        DateTime ngaysinh;
+
+        int tuoi;
         string gioitinh;
         string sdt;
 
         public string AccID { get => accID; set => accID = value; }
         public string TenKH { get => tenKH; set => tenKH = value; }
         public string Diachi { get => diachi; set => diachi = value; }
-        public DateTime Ngaysinh { get => ngaysinh; set => ngaysinh = value; }
+        
         public string Gioitinh { get => gioitinh; set => gioitinh = value; }
         public string Sdt { get => sdt; set => sdt = value; }
+        public int Tuoi { get => tuoi; set => tuoi = value; }
     }
 }

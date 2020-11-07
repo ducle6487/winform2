@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             this.pnRegister = new System.Windows.Forms.Panel();
+            this.cbAge = new System.Windows.Forms.ComboBox();
             this.btnRegisterNow = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -45,7 +46,6 @@
             this.lbUser = new System.Windows.Forms.Label();
             this.lbFullName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbAge = new System.Windows.Forms.ComboBox();
             this.pnRegister.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,60 +67,80 @@
             this.pnRegister.Controls.Add(this.lbPassword);
             this.pnRegister.Controls.Add(this.lbUser);
             this.pnRegister.Controls.Add(this.lbFullName);
-            this.pnRegister.Location = new System.Drawing.Point(204, 78);
+            this.pnRegister.Location = new System.Drawing.Point(306, 120);
+            this.pnRegister.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnRegister.Name = "pnRegister";
-            this.pnRegister.Size = new System.Drawing.Size(403, 325);
+            this.pnRegister.Size = new System.Drawing.Size(604, 500);
             this.pnRegister.TabIndex = 0;
+            // 
+            // cbAge
+            // 
+            this.cbAge.FormattingEnabled = true;
+            this.cbAge.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cbAge.Location = new System.Drawing.Point(204, 263);
+            this.cbAge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbAge.Name = "cbAge";
+            this.cbAge.Size = new System.Drawing.Size(90, 28);
+            this.cbAge.TabIndex = 15;
             // 
             // btnRegisterNow
             // 
-            this.btnRegisterNow.Location = new System.Drawing.Point(166, 283);
+            this.btnRegisterNow.Location = new System.Drawing.Point(249, 435);
+            this.btnRegisterNow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegisterNow.Name = "btnRegisterNow";
-            this.btnRegisterNow.Size = new System.Drawing.Size(75, 23);
+            this.btnRegisterNow.Size = new System.Drawing.Size(112, 35);
             this.btnRegisterNow.TabIndex = 14;
             this.btnRegisterNow.Text = "Register now";
             this.btnRegisterNow.UseVisualStyleBackColor = true;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(136, 243);
+            this.textBox7.Location = new System.Drawing.Point(204, 374);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(174, 20);
+            this.textBox7.Size = new System.Drawing.Size(259, 26);
             this.textBox7.TabIndex = 13;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(136, 208);
+            this.textBox6.Location = new System.Drawing.Point(204, 320);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(174, 20);
+            this.textBox6.Size = new System.Drawing.Size(259, 26);
             this.textBox6.TabIndex = 12;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(136, 134);
+            this.textBox5.Location = new System.Drawing.Point(204, 206);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(35, 20);
+            this.textBox5.Size = new System.Drawing.Size(50, 26);
             this.textBox5.TabIndex = 11;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(136, 101);
+            this.textBox3.Location = new System.Drawing.Point(204, 155);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(174, 20);
+            this.textBox3.Size = new System.Drawing.Size(259, 26);
             this.textBox3.TabIndex = 9;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(136, 60);
+            this.textBox2.Location = new System.Drawing.Point(204, 92);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(174, 20);
+            this.textBox2.Size = new System.Drawing.Size(259, 26);
             this.textBox2.TabIndex = 8;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(136, 26);
+            this.textBox1.Location = new System.Drawing.Point(204, 40);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 20);
+            this.textBox1.Size = new System.Drawing.Size(259, 26);
             this.textBox1.TabIndex = 7;
             // 
             // lbPhoneNumber
@@ -129,9 +149,10 @@
             this.lbPhoneNumber.BackColor = System.Drawing.Color.Transparent;
             this.lbPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPhoneNumber.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbPhoneNumber.Location = new System.Drawing.Point(43, 246);
+            this.lbPhoneNumber.Location = new System.Drawing.Point(64, 378);
+            this.lbPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbPhoneNumber.Name = "lbPhoneNumber";
-            this.lbPhoneNumber.Size = new System.Drawing.Size(90, 13);
+            this.lbPhoneNumber.Size = new System.Drawing.Size(132, 20);
             this.lbPhoneNumber.TabIndex = 6;
             this.lbPhoneNumber.Text = "Phone Number";
             // 
@@ -141,9 +162,10 @@
             this.lbAddress.BackColor = System.Drawing.Color.Transparent;
             this.lbAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAddress.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbAddress.Location = new System.Drawing.Point(76, 211);
+            this.lbAddress.Location = new System.Drawing.Point(114, 325);
+            this.lbAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Size = new System.Drawing.Size(52, 13);
+            this.lbAddress.Size = new System.Drawing.Size(78, 20);
             this.lbAddress.TabIndex = 5;
             this.lbAddress.Text = "Address";
             // 
@@ -153,9 +175,10 @@
             this.lbSex.BackColor = System.Drawing.Color.Transparent;
             this.lbSex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSex.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbSex.Location = new System.Drawing.Point(96, 175);
+            this.lbSex.Location = new System.Drawing.Point(144, 269);
+            this.lbSex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbSex.Name = "lbSex";
-            this.lbSex.Size = new System.Drawing.Size(28, 13);
+            this.lbSex.Size = new System.Drawing.Size(40, 20);
             this.lbSex.TabIndex = 4;
             this.lbSex.Text = "Sex";
             // 
@@ -165,9 +188,10 @@
             this.lbAge.BackColor = System.Drawing.Color.Transparent;
             this.lbAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAge.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbAge.Location = new System.Drawing.Point(95, 137);
+            this.lbAge.Location = new System.Drawing.Point(142, 211);
+            this.lbAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAge.Name = "lbAge";
-            this.lbAge.Size = new System.Drawing.Size(29, 13);
+            this.lbAge.Size = new System.Drawing.Size(41, 20);
             this.lbAge.TabIndex = 3;
             this.lbAge.Text = "Age";
             // 
@@ -177,9 +201,10 @@
             this.lbPassword.BackColor = System.Drawing.Color.Transparent;
             this.lbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPassword.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbPassword.Location = new System.Drawing.Point(68, 104);
+            this.lbPassword.Location = new System.Drawing.Point(102, 160);
+            this.lbPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(61, 13);
+            this.lbPassword.Size = new System.Drawing.Size(91, 20);
             this.lbPassword.TabIndex = 2;
             this.lbPassword.Text = "Password";
             // 
@@ -189,9 +214,10 @@
             this.lbUser.BackColor = System.Drawing.Color.Transparent;
             this.lbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUser.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbUser.Location = new System.Drawing.Point(92, 63);
+            this.lbUser.Location = new System.Drawing.Point(138, 97);
+            this.lbUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbUser.Name = "lbUser";
-            this.lbUser.Size = new System.Drawing.Size(33, 13);
+            this.lbUser.Size = new System.Drawing.Size(49, 20);
             this.lbUser.TabIndex = 1;
             this.lbUser.Text = "User";
             // 
@@ -201,9 +227,10 @@
             this.lbFullName.BackColor = System.Drawing.Color.Transparent;
             this.lbFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFullName.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbFullName.Location = new System.Drawing.Point(67, 29);
+            this.lbFullName.Location = new System.Drawing.Point(100, 45);
+            this.lbFullName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFullName.Name = "lbFullName";
-            this.lbFullName.Size = new System.Drawing.Size(63, 13);
+            this.lbFullName.Size = new System.Drawing.Size(94, 20);
             this.lbFullName.TabIndex = 0;
             this.lbFullName.Text = "Full Name";
             // 
@@ -213,32 +240,23 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Ink Free", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(232, 32);
+            this.label1.Location = new System.Drawing.Point(348, 49);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(318, 30);
+            this.label1.Size = new System.Drawing.Size(462, 45);
             this.label1.TabIndex = 1;
             this.label1.Text = "CREATER YOUR ACCOUNT";
             // 
-            // cbAge
-            // 
-            this.cbAge.FormattingEnabled = true;
-            this.cbAge.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
-            this.cbAge.Location = new System.Drawing.Point(136, 171);
-            this.cbAge.Name = "cbAge";
-            this.cbAge.Size = new System.Drawing.Size(61, 21);
-            this.cbAge.TabIndex = 15;
-            // 
             // Register
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnRegister);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Register";
             this.Text = "Register";
             this.Load += new System.EventHandler(this.Register_Load);

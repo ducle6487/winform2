@@ -141,7 +141,7 @@ namespace DAL
 
 
         //ham dang ky  account kem thong tin
-        public bool RegisterAccountIncludeInfo(string user, string pass, string ten, string diachi, DateTime namsinh, string gioitinh, string sdt)
+        public bool RegisterAccountIncludeInfo(string user, string pass, string ten, string diachi, int tuoi, string gioitinh, string sdt)
         {
 
             bool kq = false;
@@ -164,14 +164,14 @@ namespace DAL
                         SqlParameter Accid = new SqlParameter("@id", SqlDbType.NVarChar);
                         SqlParameter name = new SqlParameter("@name", SqlDbType.NVarChar);
                         SqlParameter address = new SqlParameter("@address", SqlDbType.NVarChar);
-                        SqlParameter birth = new SqlParameter("@birth", SqlDbType.DateTime);
+                        SqlParameter birth = new SqlParameter("@birth", SqlDbType.Int);
                         SqlParameter gender = new SqlParameter("@gender", SqlDbType.NVarChar);
                         SqlParameter phone = new SqlParameter("@phone", SqlDbType.NVarChar);
 
                         Accid.Value = id;
                         name.Value = ten;
                         address.Value = diachi;
-                        birth.Value = namsinh;
+                        birth.Value = tuoi;
                         gender.Value = gioitinh;
                         phone.Value = sdt;
                         //bien chua trang thai da add dc hay chua
@@ -195,7 +195,7 @@ namespace DAL
 
 
         //ham update Account Info
-        public bool UpdateInfoAccount(string AccID, string ten, string diachi, DateTime namsinh, string gioitinh, string sdt)
+        public bool UpdateInfoAccount(string AccID, string ten, string diachi, int tuoi, string gioitinh, string sdt)
         {
             bool kq = false;
 
@@ -206,14 +206,14 @@ namespace DAL
                 SqlParameter Accid = new SqlParameter("@id", SqlDbType.NVarChar);
                 SqlParameter name = new SqlParameter("@name", SqlDbType.NVarChar);
                 SqlParameter address = new SqlParameter("@address", SqlDbType.NVarChar);
-                SqlParameter birth = new SqlParameter("@birth", SqlDbType.DateTime);
+                SqlParameter birth = new SqlParameter("@birth", SqlDbType.Int);
                 SqlParameter gender = new SqlParameter("@gender", SqlDbType.NVarChar);
                 SqlParameter phone = new SqlParameter("@phone", SqlDbType.NVarChar);
 
                 Accid.Value = AccID;
                 name.Value = ten;
                 address.Value = diachi;
-                birth.Value = namsinh;
+                birth.Value = tuoi;
                 gender.Value = gioitinh;
                 phone.Value = sdt;
 

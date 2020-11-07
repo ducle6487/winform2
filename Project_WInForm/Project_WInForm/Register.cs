@@ -19,6 +19,7 @@ namespace Project_WInForm
 
         private void Register_Load(object sender, EventArgs e)
         {
+
             pnRegister.BackColor = Color.FromArgb(100, 0, 0, 0);
         }
     }
