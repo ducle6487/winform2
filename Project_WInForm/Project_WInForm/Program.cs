@@ -16,7 +16,7 @@ namespace Project_WInForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GioHang());
+            Application.Run(new LoginForm());
         }
     }
 }
