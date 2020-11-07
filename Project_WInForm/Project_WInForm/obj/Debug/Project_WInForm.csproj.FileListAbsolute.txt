@@ -11,3 +11,5 @@ C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\bin\Debug\
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.csproj.CopyComplete
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.exe
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.pdb
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\bin\Debug\DAL.dll
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\bin\Debug\DAL.pdb
