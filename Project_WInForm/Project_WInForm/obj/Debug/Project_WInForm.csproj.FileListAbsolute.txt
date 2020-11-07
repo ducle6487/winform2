@@ -1,5 +1,4 @@
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.csprojAssemblyReference.cache
-C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.Form1.resources
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.Properties.Resources.resources
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.csproj.GenerateResource.cache
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.csproj.CoreCompileInputs.cache
@@ -13,3 +12,7 @@ C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.pdb
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\bin\Debug\DAL.dll
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\bin\Debug\DAL.pdb
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.Description.resources
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.GioHang.resources
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.LoginForm.resources
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.Register.resources
