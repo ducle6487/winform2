@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeInfo.Designer.cs">
+      <DependentUpon>ChangeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryTrade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryTrade.Designer.cs">
+      <DependentUpon>HistoryTrade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoUser.Designer.cs">
+      <DependentUpon>InfoUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Description.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +96,15 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChangeInfo.resx">
+      <DependentUpon>ChangeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryTrade.resx">
+      <DependentUpon>HistoryTrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoUser.resx">
+      <DependentUpon>InfoUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Description.resx">
       <DependentUpon>Description.cs</DependentUpon>
     </EmbeddedResource>

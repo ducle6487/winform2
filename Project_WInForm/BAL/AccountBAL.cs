@@ -35,6 +35,10 @@ namespace BAL
             return dal.ChangePassword(Accid, oldPass, newPass);
         }
 
+        public InfoAccDTO GetInfoFromUsername(string username)
+        {
+            return dal.GetInfoFromUsername(username);
+        }
 
     }
 }

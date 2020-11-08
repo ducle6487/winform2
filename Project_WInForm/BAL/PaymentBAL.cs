@@ -8,7 +8,7 @@ using DTO;
 
 namespace BAL
 {
-    class PaymentBAL
+    public class PaymentBAL
     {
 
         PaymentDAL dal = new PaymentDAL();

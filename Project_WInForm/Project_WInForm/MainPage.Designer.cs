@@ -79,12 +79,13 @@
             this.btInfo.TabIndex = 1;
             this.btInfo.Text = "Đổi thông tin";
             this.btInfo.UseVisualStyleBackColor = false;
+            this.btInfo.Click += new System.EventHandler(this.btInfo_Click);
             // 
             // lbInfo
             // 
             this.lbInfo.AutoSize = true;
             this.lbInfo.ForeColor = System.Drawing.Color.White;
-            this.lbInfo.Location = new System.Drawing.Point(272, 16);
+            this.lbInfo.Location = new System.Drawing.Point(234, 31);
             this.lbInfo.Name = "lbInfo";
             this.lbInfo.Size = new System.Drawing.Size(51, 20);
             this.lbInfo.TabIndex = 0;
@@ -122,6 +123,7 @@
             this.Controls.Add(this.pnlToolBox);
             this.Name = "MainPage";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainPage_FormClosing);
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.Resize += new System.EventHandler(this.MainPage_Resize);
             this.pnlToolBox.ResumeLayout(false);

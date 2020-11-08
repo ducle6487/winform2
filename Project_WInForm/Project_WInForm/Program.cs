@@ -16,7 +16,7 @@ namespace Project_WInForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainPage());
+            Application.Run(new LoginForm());
         }
     }
 }

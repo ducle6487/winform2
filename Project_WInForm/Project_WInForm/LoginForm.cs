@@ -15,86 +15,110 @@ namespace Project_WInForm
     {
         AccountBAL bal = new AccountBAL();
 
+
+        public string user = "";
+        public string pass = "";
+
         public LoginForm()
         {
             InitializeComponent();
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
-        {
-            pnLogin.BackColor = Color.FromArgb(100, 0, 0, 0); //Cho màu của panel Login đổi xuống màu tối  
+        { 
+            resizeForm();
             
+        }
+
+        public void resetTextbox()
+        {
+            txtUser.Text = user;
+            txtPassword.Text = pass;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
             Register register = new Register();
             register.Show();
+            register.parentForm = this;
             this.Hide();
         }
 
         private void LoginForm_Resize(object sender, EventArgs e)
         {
+
+            pnlLogin.Location = new Point(Convert.ToInt32((this.Width / 2) - (pnlLogin.Width / 2)), Convert.ToInt32((this.Height / 2) - (pnlLogin.Width / 2)));
+
+        }
+       
+
+        private void resizeForm()
+        {
+            pnlLogin.Width = Convert.ToInt32(this.Width / 2 );
+            pnlLogin.Height = Convert.ToInt32(this.Height / 2);
+            pnlLogin.Location = new Point(Convert.ToInt32((this.Width / 2)-(pnlLogin.Width / 2)),Convert.ToInt32((this.Height / 2) - (pnlLogin.Width / 2)));
+
+            lbLogin.Location = new Point(Convert.ToInt32((pnlLogin.Width / 2) - (lbLogin.Width / 2)));
             
 
         }
-        public void dangnhap()
+        
+        private bool textboxIsFilled()
         {
+            if (txtUser.Text != "" && txtPassword.Text != "")
+            {
+                return true;
+            }
 
-            if (this.txtUser.Text.Length == 0 && this.txtPassword.Text.Length == 0) //Nếu chưa nhập gì vào User và Password thì ..
-                MessageBox.Show("Mời bạn nhập tài khoản và mật khẩu !");
-            else
-                    if (this.txtUser.Text.Length == 0) //Nếu chưa nhập gì cho User thì...
-                MessageBox.Show("Mời bạn nhập tài khoản !");
-            else
-                if (this.txtPassword.Text.Length == 0) //Nếu chưa nhập gì cho Password thì...
-                MessageBox.Show("Mời bạn nhập mật khẩu !");
-         
-            
+            return false;
+        }
+        
 
-        }
-        // Hàm này kiểm tra đăng nhập
-        public int LogInChecking(string user, string pass) 
-        {
-            return bal.LogInChecking(user, pass);
-        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            bool kq = false;
-            if (txtUser.Text != "" && txtPassword.Text != "") //Nếu nhập vào User và Password vào
+
+            if (textboxIsFilled())
             {
-                if (LogInChecking(txtUser.Text, txtPassword.Text)==1) //Nếu kiểm tra đăng nhập=1 thì thì Admin
+                int type = bal.LogInChecking(txtUser.Text, txtPassword.Text);
+                if (type == 1)
                 {
-                    MessageBox.Show("Chào mừng Admin !"); 
-                    
-                    if(LogInChecking(txtUser.Text, txtPassword.Text) == 2) //Nếu kiểm tra đăng nhập=2 thì là người dùng
-                    { 
-                        MessageBox.Show("Chào mừng bạn đến shop !");
+                    MessageBox.Show("Admin trở lại!");
+                }
+                else
+                {
+                    if(type == 2)
+                    {
+                        MessageBox.Show("Đăng nhập thành công");
+                        MainPage m = new MainPage(txtUser.Text);
+                        m.Show();
                         
+                        this.Hide();
                     }
-                        else
-                        {
-                        kq = false;
-                        MessageBox.Show("Tài khoản hoặc mật khẩu không đúng !");
-                    }    
-                 }
-                     else
-                     {
-                        kq = false;
-                    MessageBox.Show("Tài khoản hoặc mật khẩu không đúng !");
-                     }               
+                    else
+                    {
+                        MessageBox.Show("Đăng nhập thất bại");
+                    }
+                }
             }
-              else
-              {
-                dangnhap();
-                kq = true;
-              }
+            else
+            {
+                MessageBox.Show("Hãy điển đầy đủ thông tin");
+            }
+
         }
 
-        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            DialogResult result = MessageBox.Show("Bạn có muốn tắt chứ ?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
+
+        
 
         
     }

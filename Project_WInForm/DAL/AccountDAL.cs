@@ -1,10 +1,12 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -33,10 +35,11 @@ namespace DAL
                     //lay type acc gan vao kq
                     kq = reader.GetInt32(0);
                 }
+                reader.Close();
             }catch(Exception ex)
             {
 
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -46,6 +49,40 @@ namespace DAL
 
             return kq;//tra ve kq tim dc
 
+        }
+
+        //hàm lấy thông tin thông qua AccID
+        public InfoAccDTO GetInfoFromUsername(string username)
+        {
+            InfoAccDTO kq = new InfoAccDTO();
+
+            try
+            {
+
+                string sql = "select b.AccID,b.TenKH,b.DiaChi,b.Tuoi,b.GioiTinh,b.SDT from Account a, AccInfo b where a.Username=@id and a.AccID = b.AccID";
+                SqlParameter user = new SqlParameter("@id", SqlDbType.NVarChar);
+                user.Value = username;
+                SqlDataReader reader = ReadDataPars(sql, new[] { user });
+                if (reader.Read())
+                {
+                    kq.AccID = reader.GetString(0);
+                    kq.TenKH = reader.GetString(1);
+                    kq.Diachi = reader.GetString(2);
+                    kq.Tuoi = reader.GetInt32(3);
+                    kq.Gioitinh = reader.GetString(4);
+                    kq.Sdt = reader.GetString(5);
+                }
+                reader.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                closeConnection();
+            }
+            return kq;
         }
 
         //hàm kiem tra ton tai account truoc khi dang ky
@@ -66,9 +103,10 @@ namespace DAL
                     //neu ton tai account trong db gan kq = true
                     kq = true;
                 }
+                reader.Close();
             }catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -94,12 +132,14 @@ namespace DAL
                     //gan kq bang so luong acc dem dc
                     kq = reader.GetInt32(0);
                 }
+                reader.Close();
             }catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {
+                
                 closeConnection();
             }
 
@@ -128,7 +168,7 @@ namespace DAL
             }
             catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -152,7 +192,8 @@ namespace DAL
             {
                 //tao id de add acccount 
                 //co dinh dang Ax, x la so
-                string id = "A" + CountingAccount()+1;
+                int stt = CountingAccount();
+                string id = "A" + stt +1;
 
                 if (RegisterAccount(id, user, pass))
                 {
@@ -179,7 +220,7 @@ namespace DAL
 
                     }catch(Exception ex)
                     {
-                        ex.ToString();
+                        MessageBox.Show(ex.Message);
                     }
                     finally
                     {
@@ -202,7 +243,7 @@ namespace DAL
             try
             {
                 //query update acccount voi accis dc truyen vao
-                string sql = "update AccInfo set( TenKH = @name, DiaChi = @address, NamSinh = @birth, GioiTinh = @gender, SDT = @phone ) where AccID = @id";
+                string sql = "update AccInfo set TenKH = @name, DiaChi = @address, Tuoi = @birth, GioiTinh = @gender, SDT = @phone where AccID = @id";
                 SqlParameter Accid = new SqlParameter("@id", SqlDbType.NVarChar);
                 SqlParameter name = new SqlParameter("@name", SqlDbType.NVarChar);
                 SqlParameter address = new SqlParameter("@address", SqlDbType.NVarChar);
@@ -222,7 +263,7 @@ namespace DAL
 
             }catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -242,7 +283,7 @@ namespace DAL
             try
             {
                 //query cap nhat password voi accid truyen vao;
-                string sql = "update Account set (Password = @newpass) where AccID = @id and Password = @oldpass";
+                string sql = "update Account set Password = @newpass where AccID = @id and Password = @oldpass";
                 SqlParameter id = new SqlParameter("@id", SqlDbType.NVarChar);
                 SqlParameter oldpass = new SqlParameter("@oldpass", SqlDbType.NVarChar);
                 SqlParameter newpass = new SqlParameter("@newpass", SqlDbType.NVarChar);
@@ -256,7 +297,7 @@ namespace DAL
             }
             catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {

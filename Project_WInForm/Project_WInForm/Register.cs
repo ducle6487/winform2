@@ -19,40 +19,89 @@ namespace Project_WInForm
             InitializeComponent();
         }
 
+        public LoginForm parentForm {get;set;}
         
         private void Register_Load(object sender, EventArgs e)
         {
             pnRegister.BackColor = Color.FromArgb(100, 0, 0, 0); //Cho màu của panel Login đổi xuống màu tối
+            pnRegister.Location = new Point(Convert.ToInt32((this.Width / 2) - (pnRegister.Width / 2)), Convert.ToInt32((this.Height / 2) - (pnRegister.Width / 2)));
+            lbTitle.Location = new Point(Convert.ToInt32((this.Width / 2) - (lbTitle.Width / 2)), Convert.ToInt32((this.Height / 12)));
             
         }
 
-        public bool RegisterAccountIncludeInfo(string user, string pass, string ten, string diachi, int tuoi, string gioitinh, string sdt)
+        
+        private bool textboxIsFilled()
         {
-            return bal.RegisterAccountIncludeInfo(user, pass, ten, diachi, tuoi, gioitinh, sdt);
+            if (txtFullName.Text!=""&&txtAddress.Text!=""&&txtAge.Text != ""&&txtPassword.Text!=""&&txtPhoneNumber.Text!=""&&txtUser.Text!=""&&cbGender.Text!="")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        private bool isNumber(string num)
+        {
+
+            for(int i = 0; i < num.Length; i++)
+            {
+                if (Char.IsDigit(num[i])==false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
         
         private void btnRegisterNow_Click(object sender, EventArgs e)
         {
-            bool kq = false;
-            // Kiểm tra đầy đủ thông tin hay chưa ?
-            //Nếu chưa thì quăng ra lỗi
-            if (txtFullName.Text == "" || txtUser.Text == "" || txtPassword.Text == "" || txtAddress.Text == "" || txtAge.Text == "" || cbGender.Text == "" || txtPhoneNumber.Text == "") throw new Exception("Vui lòng điền đầy đủ thông tin !");
-            if (txtFullName.Text == "" && txtUser.Text == "" && txtPassword.Text == "" && txtAddress.Text == "" && txtAge.Text == "" && cbGender.Text == "" && txtPhoneNumber.Text == "") 
+            if (textboxIsFilled())
             {
-                if(bal.RegisterAccountIncludeInfo(txtFullName.Text , txtUser.Text , txtPassword.Text , txtAddress.Text, Convert.ToInt32(txtAge) , cbGender.Text,  txtPhoneNumber.Text)==false )
+                if (isNumber(txtPhoneNumber.Text)==false)
                 {
-                    MessageBox.Show("Bạn đăng kí thất bại !");
+                    MessageBox.Show("Số điện thoại tào lao");
                 }
                 else
                 {
-                    kq = true;
-                    MessageBox.Show("Chúc mừng bạn đã đăng kí thành công !");
-                }    
+                    if (isNumber(txtAge.Text) == false)
+                    {
+                        MessageBox.Show("Tuổi không đúng");
+                    }
+                    else
+                    {
+                        if (bal.RegisterAccountIncludeInfo(txtUser.Text, txtPassword.Text, txtFullName.Text, txtAddress.Text, Convert.ToInt32(txtAge.Text), cbGender.Text, txtPhoneNumber.Text))
+                        {
+                            MessageBox.Show("Đăng ký thành công");
+                            parentForm.user = txtUser.Text;
+                            parentForm.pass = txtPassword.Text;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đăng ký thất bại");
+                        }
+                    }
+                }
             }
             else
             {
-                kq = true;
+                MessageBox.Show("Nhập thông tin đầy đủ đi ");
             }
+        }
+
+        private void Register_Resize(object sender, EventArgs e)
+        {
+            lbTitle.Location = new Point(Convert.ToInt32((this.Width / 2) - (lbTitle.Width / 2)), Convert.ToInt32((this.Height / 15)));
+            pnRegister.Location = new Point(Convert.ToInt32((this.Width / 2) - (pnRegister.Width / 2)), Convert.ToInt32((this.Height / 2) - (pnRegister.Width / 2)));
+            
+        }
+
+        private void Register_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            parentForm.Show();
+            parentForm.resetTextbox();
         }
     }
 }
