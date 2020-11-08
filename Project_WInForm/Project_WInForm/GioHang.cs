@@ -16,17 +16,21 @@ namespace Project_WInForm
         {
             InitializeComponent();
         }
+        private void LoadData()
+        {
+            PictureBox pt = new PictureBox();
+            Bitmap bm = new Bitmap(Application.StartupPath + "\\Resources\\lam-moi-phong-thuy-noi-lam-viec-2.png");
+            pbxHinh.Image = bm;
+        }
 
-  
+        private void GioHang_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
 
-
-
-
-
-
-
-
-
-
+        private void btThanhToan_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }

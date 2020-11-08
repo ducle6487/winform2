@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Project_WInForm
 {
-    public partial class Description : Form
+    public partial class HoaDon : Form
     {
-        public Description()
+        public HoaDon()
         {
             InitializeComponent();
         }
-      
-
- 
-  
-
-       
     }
 }
