@@ -44,6 +44,7 @@
             this.btThanhToan = new System.Windows.Forms.Button();
             this.pnFooter = new System.Windows.Forms.Panel();
             this.flpnContain = new System.Windows.Forms.FlowLayoutPanel();
+            this.pbxHinh = new System.Windows.Forms.PictureBox();
             this.pnHead.SuspendLayout();
             this.pnCount.SuspendLayout();
             this.pnTenSanPham.SuspendLayout();
@@ -51,6 +52,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.pnTitle.SuspendLayout();
             this.pnFooter.SuspendLayout();
+            this.flpnContain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxHinh)).BeginInit();
             this.SuspendLayout();
             // 
             // pnHead
@@ -201,11 +204,20 @@
             // 
             // flpnContain
             // 
+            this.flpnContain.Controls.Add(this.pbxHinh);
             this.flpnContain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpnContain.Location = new System.Drawing.Point(0, 144);
             this.flpnContain.Name = "flpnContain";
             this.flpnContain.Size = new System.Drawing.Size(471, 308);
             this.flpnContain.TabIndex = 2;
+            // 
+            // pbxHinh
+            // 
+            this.pbxHinh.Location = new System.Drawing.Point(3, 3);
+            this.pbxHinh.Name = "pbxHinh";
+            this.pbxHinh.Size = new System.Drawing.Size(100, 50);
+            this.pbxHinh.TabIndex = 0;
+            this.pbxHinh.TabStop = false;
             // 
             // GioHang
             // 
@@ -228,6 +240,8 @@
             this.pnTitle.ResumeLayout(false);
             this.pnTitle.PerformLayout();
             this.pnFooter.ResumeLayout(false);
+            this.flpnContain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxHinh)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -249,5 +263,6 @@
         private System.Windows.Forms.Panel pnImage;
         private System.Windows.Forms.PictureBox pbxImage;
         private System.Windows.Forms.FlowLayoutPanel flpnContain;
+        private System.Windows.Forms.PictureBox pbxHinh;
     }
 }

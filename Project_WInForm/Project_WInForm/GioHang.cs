@@ -19,10 +19,8 @@ namespace Project_WInForm
         private void LoadData()
         {
             PictureBox pt = new PictureBox();
-            Bitmap bm = new Bitmap(Application.StartupPath + "\\Resources\\logo.png");
-            pt.Image = bm;
-            flpnContain.Controls.Add(pt);
-            MessageBox.Show("Okay");
+            Bitmap bm = new Bitmap(Application.StartupPath + "\\Resources\\lam-moi-phong-thuy-noi-lam-viec-2.png");
+            pbxHinh.Image = bm;
         }
 
         private void GioHang_Load(object sender, EventArgs e)

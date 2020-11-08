@@ -31,3 +31,7 @@ C:\Users\DELL\Source\Repos\winform2\Project_WInForm\BAL\bin\Debug\DTO.dll
 C:\Users\DELL\Source\Repos\winform2\Project_WInForm\BAL\bin\Debug\DAL.pdb
 C:\Users\DELL\Source\Repos\winform2\Project_WInForm\BAL\bin\Debug\DTO.pdb
 C:\Users\DELL\Source\Repos\winform2\Project_WInForm\BAL\obj\Debug\BAL.csproj.CopyComplete
+C:\Users\Admin\Source\Repos\winform3\Project_WInForm\BAL\obj\Debug\BAL.csprojAssemblyReference.cache
+C:\Users\Admin\Source\Repos\winform3\Project_WInForm\BAL\obj\Debug\BAL.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\winform3\Project_WInForm\BAL\obj\Debug\BAL.dll
+C:\Users\Admin\Source\Repos\winform3\Project_WInForm\BAL\obj\Debug\BAL.pdb
