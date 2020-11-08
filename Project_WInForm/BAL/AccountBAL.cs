@@ -20,24 +20,15 @@ namespace BAL
 
         }
 
-
-       public bool RegisterAccountIncludeInfo(string user, string pass, string ten, string diachi, DateTime namsinh, string gioitinh, string sdt)
-
-        public bool RegisterAccountIncludeInfo(string user, string pass, string ten, string diachi, int tuoi, string gioitinh, string sdt)
-
+        public bool RegisterAccountIncludeInfo(string user, string pass, string ten, string diachi, int namsinh, string gioitinh, string sdt)
         {
-            return dal.RegisterAccountIncludeInfo(user, pass, ten, diachi, tuoi, gioitinh, sdt);
+            return dal.RegisterAccountIncludeInfo(user, pass, ten, diachi, namsinh, gioitinh, sdt);
         }
 
-        public bool UpdateInfoAccount(string AccID, string ten, string diachi, int tuoi, string gioitinh, string sdt)
+        public bool UpdateInfoAccount(string AccID, string ten, string diachi, int namsinh, string gioitinh, string sdt)
         {
-
             return dal.UpdateInfoAccount(AccID, ten, diachi, namsinh, gioitinh, sdt);
         }
-
-            return dal.UpdateInfoAccount(AccID, ten, diachi, tuoi, gioitinh, sdt);
-        }
-
 
         public bool ChangePassword(string Accid, string oldPass, string newPass)
         {

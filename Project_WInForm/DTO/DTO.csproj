@@ -45,6 +45,7 @@
     <Compile Include="InfoAccDTO.cs" />
     <Compile Include="InfoPaymentDTO.cs" />
     <Compile Include="PaymentDTO.cs" />
+    <Compile Include="PaymentHistoryDTO.cs" />
     <Compile Include="ProductDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
