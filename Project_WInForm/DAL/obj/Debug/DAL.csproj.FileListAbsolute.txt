@@ -16,3 +16,12 @@ C:\Users\Admin\Source\Repos\ducle6487\winform2\Project_WInForm\DAL\bin\Debug\DAL
 C:\Users\Admin\Source\Repos\ducle6487\winform2\Project_WInForm\DAL\bin\Debug\DTO.dll
 C:\Users\Admin\Source\Repos\ducle6487\winform2\Project_WInForm\DAL\bin\Debug\DTO.pdb
 C:\Users\Admin\Source\Repos\ducle6487\winform2\Project_WInForm\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\bin\Debug\DAL.dll
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\bin\Debug\DAL.pdb
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\bin\Debug\DTO.dll
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\bin\Debug\DTO.pdb
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\obj\Debug\DAL.dll
+C:\Users\DELL\Source\Repos\winform2\Project_WInForm\DAL\obj\Debug\DAL.pdb
