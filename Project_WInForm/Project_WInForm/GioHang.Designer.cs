@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnContain = new System.Windows.Forms.Panel();
             this.pnHead = new System.Windows.Forms.Panel();
             this.pnCount = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.btHuy = new System.Windows.Forms.Button();
             this.btThanhToan = new System.Windows.Forms.Button();
             this.pnFooter = new System.Windows.Forms.Panel();
+            this.flpnContain = new System.Windows.Forms.FlowLayoutPanel();
             this.pnHead.SuspendLayout();
             this.pnCount.SuspendLayout();
             this.pnTenSanPham.SuspendLayout();
@@ -52,14 +52,6 @@
             this.pnTitle.SuspendLayout();
             this.pnFooter.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnContain
-            // 
-            this.pnContain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnContain.Location = new System.Drawing.Point(0, 116);
-            this.pnContain.Name = "pnContain";
-            this.pnContain.Size = new System.Drawing.Size(800, 289);
-            this.pnContain.TabIndex = 2;
             // 
             // pnHead
             // 
@@ -70,7 +62,7 @@
             this.pnHead.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnHead.Location = new System.Drawing.Point(0, 0);
             this.pnHead.Name = "pnHead";
-            this.pnHead.Size = new System.Drawing.Size(800, 116);
+            this.pnHead.Size = new System.Drawing.Size(471, 144);
             this.pnHead.TabIndex = 1;
             // 
             // pnCount
@@ -79,9 +71,9 @@
             this.pnCount.Controls.Add(this.textBox1);
             this.pnCount.Controls.Add(this.button1);
             this.pnCount.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnCount.Location = new System.Drawing.Point(682, 51);
+            this.pnCount.Location = new System.Drawing.Point(353, 51);
             this.pnCount.Name = "pnCount";
-            this.pnCount.Size = new System.Drawing.Size(118, 65);
+            this.pnCount.Size = new System.Drawing.Size(118, 93);
             this.pnCount.TabIndex = 4;
             // 
             // button2
@@ -116,16 +108,16 @@
             // pnTenSanPham
             // 
             this.pnTenSanPham.Controls.Add(this.lbTenSanPham);
-            this.pnTenSanPham.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnTenSanPham.Location = new System.Drawing.Point(286, 51);
+            this.pnTenSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnTenSanPham.Location = new System.Drawing.Point(108, 51);
             this.pnTenSanPham.Name = "pnTenSanPham";
-            this.pnTenSanPham.Size = new System.Drawing.Size(397, 65);
+            this.pnTenSanPham.Size = new System.Drawing.Size(363, 93);
             this.pnTenSanPham.TabIndex = 3;
             // 
             // lbTenSanPham
             // 
             this.lbTenSanPham.AutoSize = true;
-            this.lbTenSanPham.Location = new System.Drawing.Point(112, 30);
+            this.lbTenSanPham.Location = new System.Drawing.Point(83, 39);
             this.lbTenSanPham.Name = "lbTenSanPham";
             this.lbTenSanPham.Size = new System.Drawing.Size(78, 13);
             this.lbTenSanPham.TabIndex = 0;
@@ -137,15 +129,15 @@
             this.pnImage.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnImage.Location = new System.Drawing.Point(0, 51);
             this.pnImage.Name = "pnImage";
-            this.pnImage.Size = new System.Drawing.Size(286, 65);
+            this.pnImage.Size = new System.Drawing.Size(108, 93);
             this.pnImage.TabIndex = 2;
             // 
             // pbxImage
             // 
-            this.pbxImage.Location = new System.Drawing.Point(3, 0);
+            this.pbxImage.Location = new System.Drawing.Point(0, 0);
             this.pbxImage.Name = "pbxImage";
-            this.pbxImage.Size = new System.Drawing.Size(283, 65);
-            this.pbxImage.TabIndex = 0;
+            this.pbxImage.Size = new System.Drawing.Size(108, 93);
+            this.pbxImage.TabIndex = 2;
             this.pbxImage.TabStop = false;
             // 
             // pnTitle
@@ -155,7 +147,7 @@
             this.pnTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTitle.Location = new System.Drawing.Point(0, 0);
             this.pnTitle.Name = "pnTitle";
-            this.pnTitle.Size = new System.Drawing.Size(800, 51);
+            this.pnTitle.Size = new System.Drawing.Size(471, 51);
             this.pnTitle.TabIndex = 0;
             // 
             // lbGioHang
@@ -171,7 +163,7 @@
             // chbName
             // 
             this.chbName.AutoSize = true;
-            this.chbName.Location = new System.Drawing.Point(392, 12);
+            this.chbName.Location = new System.Drawing.Point(194, 12);
             this.chbName.Name = "chbName";
             this.chbName.Size = new System.Drawing.Size(54, 17);
             this.chbName.TabIndex = 0;
@@ -180,7 +172,7 @@
             // 
             // btHuy
             // 
-            this.btHuy.Location = new System.Drawing.Point(213, 12);
+            this.btHuy.Location = new System.Drawing.Point(76, 12);
             this.btHuy.Name = "btHuy";
             this.btHuy.Size = new System.Drawing.Size(134, 52);
             this.btHuy.TabIndex = 2;
@@ -189,33 +181,43 @@
             // 
             // btThanhToan
             // 
-            this.btThanhToan.Location = new System.Drawing.Point(431, 12);
+            this.btThanhToan.Location = new System.Drawing.Point(273, 12);
             this.btThanhToan.Name = "btThanhToan";
             this.btThanhToan.Size = new System.Drawing.Size(134, 52);
             this.btThanhToan.TabIndex = 3;
             this.btThanhToan.Text = "Thanh Toán";
             this.btThanhToan.UseVisualStyleBackColor = true;
+            this.btThanhToan.Click += new System.EventHandler(this.btThanhToan_Click);
             // 
             // pnFooter
             // 
             this.pnFooter.Controls.Add(this.btThanhToan);
             this.pnFooter.Controls.Add(this.btHuy);
             this.pnFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnFooter.Location = new System.Drawing.Point(0, 405);
+            this.pnFooter.Location = new System.Drawing.Point(0, 452);
             this.pnFooter.Name = "pnFooter";
-            this.pnFooter.Size = new System.Drawing.Size(800, 76);
+            this.pnFooter.Size = new System.Drawing.Size(471, 76);
             this.pnFooter.TabIndex = 0;
+            // 
+            // flpnContain
+            // 
+            this.flpnContain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpnContain.Location = new System.Drawing.Point(0, 144);
+            this.flpnContain.Name = "flpnContain";
+            this.flpnContain.Size = new System.Drawing.Size(471, 308);
+            this.flpnContain.TabIndex = 2;
             // 
             // GioHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 481);
-            this.Controls.Add(this.pnContain);
+            this.ClientSize = new System.Drawing.Size(471, 528);
+            this.Controls.Add(this.flpnContain);
             this.Controls.Add(this.pnHead);
             this.Controls.Add(this.pnFooter);
             this.Name = "GioHang";
             this.Text = "GioHang";
+            this.Load += new System.EventHandler(this.GioHang_Load);
             this.pnHead.ResumeLayout(false);
             this.pnCount.ResumeLayout(false);
             this.pnCount.PerformLayout();
@@ -231,9 +233,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel pnContain;
         private System.Windows.Forms.Panel pnHead;
-        private System.Windows.Forms.Panel pnImage;
         private System.Windows.Forms.Panel pnTitle;
         private System.Windows.Forms.Panel pnCount;
         private System.Windows.Forms.Panel pnTenSanPham;
@@ -242,10 +242,12 @@
         private System.Windows.Forms.Panel pnFooter;
         private System.Windows.Forms.CheckBox chbName;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pbxImage;
         private System.Windows.Forms.Label lbTenSanPham;
         private System.Windows.Forms.Label lbGioHang;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnImage;
+        private System.Windows.Forms.PictureBox pbxImage;
+        private System.Windows.Forms.FlowLayoutPanel flpnContain;
     }
 }

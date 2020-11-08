@@ -16,17 +16,23 @@ namespace Project_WInForm
         {
             InitializeComponent();
         }
+        private void LoadData()
+        {
+            PictureBox pt = new PictureBox();
+            Bitmap bm = new Bitmap(Application.StartupPath + "\\Resources\\logo.png");
+            pt.Image = bm;
+            flpnContain.Controls.Add(pt);
+            MessageBox.Show("Okay");
+        }
 
-  
+        private void GioHang_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
 
-
-
-
-
-
-
-
-
-
+        private void btThanhToan_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }
