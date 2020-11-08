@@ -175,7 +175,6 @@
             this.Name = "LoginForm";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.LoginForm_Load);
-            this.Resize += new System.EventHandler(this.LoginForm_Resize);
             this.pnLogin.ResumeLayout(false);
             this.pnLogin.PerformLayout();
             this.ResumeLayout(false);
