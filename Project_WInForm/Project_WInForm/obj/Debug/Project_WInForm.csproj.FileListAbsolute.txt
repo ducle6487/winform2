@@ -16,3 +16,6 @@ C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.GioHang.resources
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.LoginForm.resources
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.Register.resources
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.MainPage.resources
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\bin\Debug\DTO.dll
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\bin\Debug\DTO.pdb

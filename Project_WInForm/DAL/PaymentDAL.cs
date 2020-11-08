@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace DAL
 {
@@ -76,7 +77,7 @@ namespace DAL
         public bool AddBillIncludeInfo(string billID, string accID, DateTime ngaydat, int ProductID, int soluong, string size, string tonggia)
         {
             bool kq = false;
-            string IDbill = "H" + CountingBill() + 1;
+            string IDbill = "B" + CountingBill() + 1;//id bill co dinh dang Bx voi x la so thu tu cua bill.
 
             if (AddBill(IDbill, accID, ngaydat))
             {
@@ -114,7 +115,49 @@ namespace DAL
             return kq;
         }
 
+        //hàm lay lich su giao dich cua khach hang
+        public List<PaymentHistoryDTO> GetInfoPaymentFromAccID(string Accid)
+        {
+            //danh sach thong tin giao dich
+            List<PaymentHistoryDTO> list = new List<PaymentHistoryDTO>();
 
+            
+            try
+            {
+                //cau lenh query lay thong tin giao dich
+                string sql = "select a.Path, a.ProductName, b.NgayDat, c.Size, c.Amount, c.TotalPrice "
+                        + "from Product a, Payment b, PaymentInfo c where c.ProductID = @id and c.BillID = b.BillID and a.ProductID = c.ProductID";
+
+                SqlParameter id = new SqlParameter("@id", System.Data.SqlDbType.NVarChar);
+                id.Value = Accid;
+
+                SqlDataReader reader = ReadDataPars(sql, new[] { id });
+
+
+                while (reader.Read())
+                {
+                    //truyen thong tin giao dich vao danh sach
+                    PaymentHistoryDTO a = new PaymentHistoryDTO();
+                    a.LinkImage = reader.GetString(0);
+                    a.ProductName = reader.GetString(1);
+                    a.NgayDat = reader.GetDateTime(2);
+                    a.Size = reader.GetString(3);
+                    a.Amount = reader.GetInt32(4);
+                    a.TotalPrice = reader.GetString(5);
+                    list.Add(a);
+                }
+
+            }catch(Exception ex)
+            {
+                ex.ToString();
+            }
+            finally
+            {
+                closeConnection();
+            }
+
+            return list;
+        }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class InfoAccDTO
+    public class InfoAccDTO
     {
 
         string accID;
