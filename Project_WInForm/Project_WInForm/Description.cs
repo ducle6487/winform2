@@ -102,7 +102,7 @@ namespace Project_WInForm
                 TextChange(sl.ToString());
                 GiaChange(sl.ToString());
             }
-            else if (Convert.ToInt32(lbSoLuong.Text)<1)
+            else
             {
                 //Ngược Lại
                 
