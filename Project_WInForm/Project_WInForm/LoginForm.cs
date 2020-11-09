@@ -84,6 +84,10 @@ namespace Project_WInForm
                 if (type == 1)
                 {
                     MessageBox.Show("Admin trở lại!");
+                    Admin a = new Admin();
+                    a.Show();
+
+                    this.Hide();
                 }
                 else
                 {

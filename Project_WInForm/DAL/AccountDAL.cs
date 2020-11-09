@@ -308,5 +308,37 @@ namespace DAL
         }
 
 
+        //hàm lấy thông tin Account
+        public List<InfoAccDTO> GetInfoAccs()
+        {
+            List<InfoAccDTO> list = new List<InfoAccDTO>();
+
+            try
+            {
+                string sql = "select * from AccInfo";
+                SqlDataReader reader = ReadData(sql);
+                while (reader.Read())
+                {
+                    InfoAccDTO i = new InfoAccDTO();
+                    i.AccID = reader.GetString(0);
+                    i.TenKH = reader.GetString(1);
+                    i.Diachi = reader.GetString(2);
+                    i.Tuoi = reader.GetInt32(3);
+                    i.Gioitinh = reader.GetString(4);
+                    i.Sdt = reader.GetString(5);
+                    list.Add(i);
+                }
+            }catch(Exception ex)
+            {
+                ex.ToString();
+            }
+            finally
+            {
+                closeConnection();
+            }
+
+            return list;
+        }
+
     }
 }

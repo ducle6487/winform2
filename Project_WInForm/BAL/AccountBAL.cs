@@ -40,5 +40,10 @@ namespace BAL
             return dal.GetInfoFromUsername(username);
         }
 
+        public List<InfoAccDTO> GetInfoAccs()
+        {
+            return dal.GetInfoAccs();
+        }
+
     }
 }
