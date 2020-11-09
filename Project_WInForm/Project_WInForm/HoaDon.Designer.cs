@@ -47,6 +47,7 @@
             this.rbtThanhToanThe = new System.Windows.Forms.RadioButton();
             this.lbPhuongThucThanhToan = new System.Windows.Forms.Label();
             this.rbtThanhToanKhiGiaoHang = new System.Windows.Forms.RadioButton();
+            this.lb1 = new System.Windows.Forms.Label();
             this.pnFooter.SuspendLayout();
             this.pnContain.SuspendLayout();
             this.pnThongTin.SuspendLayout();
@@ -61,10 +62,12 @@
             this.pnFooter.Name = "pnFooter";
             this.pnFooter.Size = new System.Drawing.Size(496, 89);
             this.pnFooter.TabIndex = 1;
+            this.pnFooter.Resize += new System.EventHandler(this.pnFooter_Resize);
             // 
             // btDatMua
             // 
             this.btDatMua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btDatMua.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDatMua.Font = new System.Drawing.Font("Ink Free", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDatMua.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDatMua.Location = new System.Drawing.Point(167, 31);
@@ -73,6 +76,7 @@
             this.btDatMua.TabIndex = 2;
             this.btDatMua.Text = "ĐẶT MUA";
             this.btDatMua.UseVisualStyleBackColor = false;
+            this.btDatMua.Click += new System.EventHandler(this.btDatMua_Click);
             // 
             // pnContain
             // 
@@ -83,9 +87,11 @@
             this.pnContain.Name = "pnContain";
             this.pnContain.Size = new System.Drawing.Size(496, 463);
             this.pnContain.TabIndex = 2;
+            this.pnContain.Resize += new System.EventHandler(this.pnContain_Resize);
             // 
             // pnThongTin
             // 
+            this.pnThongTin.Controls.Add(this.lb1);
             this.pnThongTin.Controls.Add(this.rtxtDiaChi);
             this.pnThongTin.Controls.Add(this.cbxQuanHuyen);
             this.pnThongTin.Controls.Add(this.cbxTinhThanhPho);
@@ -102,6 +108,7 @@
             this.pnThongTin.Name = "pnThongTin";
             this.pnThongTin.Size = new System.Drawing.Size(496, 390);
             this.pnThongTin.TabIndex = 2;
+            this.pnThongTin.Resize += new System.EventHandler(this.pnThongTin_Resize);
             // 
             // rtxtDiaChi
             // 
@@ -113,6 +120,8 @@
             // 
             // cbxQuanHuyen
             // 
+            this.cbxQuanHuyen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbxQuanHuyen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxQuanHuyen.FormattingEnabled = true;
             this.cbxQuanHuyen.Location = new System.Drawing.Point(167, 152);
             this.cbxQuanHuyen.Name = "cbxQuanHuyen";
@@ -121,6 +130,8 @@
             // 
             // cbxTinhThanhPho
             // 
+            this.cbxTinhThanhPho.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbxTinhThanhPho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTinhThanhPho.FormattingEnabled = true;
             this.cbxTinhThanhPho.Location = new System.Drawing.Point(167, 115);
             this.cbxTinhThanhPho.Name = "cbxTinhThanhPho";
@@ -206,10 +217,12 @@
             this.pnPhuongThucThanhToan.Name = "pnPhuongThucThanhToan";
             this.pnPhuongThucThanhToan.Size = new System.Drawing.Size(496, 73);
             this.pnPhuongThucThanhToan.TabIndex = 1;
+            this.pnPhuongThucThanhToan.Resize += new System.EventHandler(this.pnPhuongThucThanhToan_Resize);
             // 
             // rbtThanhToanThe
             // 
             this.rbtThanhToanThe.AutoSize = true;
+            this.rbtThanhToanThe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtThanhToanThe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtThanhToanThe.Location = new System.Drawing.Point(39, 50);
             this.rbtThanhToanThe.Name = "rbtThanhToanThe";
@@ -232,6 +245,7 @@
             // rbtThanhToanKhiGiaoHang
             // 
             this.rbtThanhToanKhiGiaoHang.AutoSize = true;
+            this.rbtThanhToanKhiGiaoHang.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtThanhToanKhiGiaoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtThanhToanKhiGiaoHang.Location = new System.Drawing.Point(39, 22);
             this.rbtThanhToanKhiGiaoHang.Name = "rbtThanhToanKhiGiaoHang";
@@ -240,6 +254,15 @@
             this.rbtThanhToanKhiGiaoHang.TabStop = true;
             this.rbtThanhToanKhiGiaoHang.Text = " Thanh toán tiền mặt khi giao hàng";
             this.rbtThanhToanKhiGiaoHang.UseVisualStyleBackColor = true;
+            // 
+            // lb1
+            // 
+            this.lb1.AutoSize = true;
+            this.lb1.Location = new System.Drawing.Point(164, 293);
+            this.lb1.Name = "lb1";
+            this.lb1.Size = new System.Drawing.Size(35, 13);
+            this.lb1.TabIndex = 12;
+            this.lb1.Text = "label1";
             // 
             // HoaDon
             // 
@@ -250,6 +273,9 @@
             this.Controls.Add(this.pnFooter);
             this.Name = "HoaDon";
             this.Text = "HoaDon";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HoaDon_FormClosing);
+            this.Load += new System.EventHandler(this.HoaDon_Load);
+            this.Resize += new System.EventHandler(this.HoaDon_Resize);
             this.pnFooter.ResumeLayout(false);
             this.pnContain.ResumeLayout(false);
             this.pnThongTin.ResumeLayout(false);
@@ -280,5 +306,6 @@
         private System.Windows.Forms.RadioButton rbtThanhToanThe;
         private System.Windows.Forms.Label lbPhuongThucThanhToan;
         private System.Windows.Forms.RadioButton rbtThanhToanKhiGiaoHang;
+        private System.Windows.Forms.Label lb1;
     }
 }
