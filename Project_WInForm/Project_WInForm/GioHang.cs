@@ -20,7 +20,7 @@ namespace Project_WInForm
         {
             PictureBox pt = new PictureBox();
             Bitmap bm = new Bitmap(Application.StartupPath + "\\Resources\\lam-moi-phong-thuy-noi-lam-viec-2.png");
-            pbxHinh.Image = bm;
+            //pbxHinh.Image = bm;
         }
 
         private void GioHang_Load(object sender, EventArgs e)
