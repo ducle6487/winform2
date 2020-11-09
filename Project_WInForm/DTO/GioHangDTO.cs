@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class GioHangDTO
+    public class GioHangDTO
     {
 
         string productName;
         string size;
         int soluong;
-        int dongia;
+        string dongia;
         string imgLink;
 
         public string ProductName { get => productName; set => productName = value; }
         public string Size { get => size; set => size = value; }
         public int Soluong { get => soluong; set => soluong = value; }
         public string ImgLink { get => imgLink; set => imgLink = value; }
-        public int Dongia { get => dongia; set => dongia = value; }
+        public string Dongia { get => dongia; set => dongia = value; }
     }
 }

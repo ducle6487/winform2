@@ -230,21 +230,25 @@ namespace Project_WInForm
         }
 
 
-        //Action cho nhung ptb trong panel 1 san pham
+        //Action cho nhung ptb trong panel 1 san pham xem thông tin sản phẩm
         private void Picturebox_click(object sender, EventArgs e)
         {
 
             PictureBox ptb = sender as PictureBox;
             //truyen qua info product
-            MessageBox.Show(ProductList[Convert.ToInt32(ptb.Tag.ToString())].ProductName);
-            
+            Description d = new Description(ProductList[Convert.ToInt32(ptb.Tag)],this);
+            d.Show();
+            this.Enabled = false;
         }
 
         //action khi nhan vao ptb xedayhang hoac label so luong sp
         private void gioHang_click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("show gio hang truyen vao list giohanginfo va accinfo(infoUser)");
+            //MessageBox.Show("show gio hang truyen vao list giohanginfo va accinfo(infoUser)");
+            GioHang g = new GioHang();
+
+
         }
 
 

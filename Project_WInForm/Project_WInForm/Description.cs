@@ -14,32 +14,66 @@ namespace Project_WInForm
     
     public partial class Description : Form
     {
-        InfoPaymentDTO a = new InfoPaymentDTO();
-        public int sl ;
-        public int gia;
+
+        GioHangDTO donhang = new GioHangDTO();
+
+        ProductDTO product = new ProductDTO();
+
+        MainPage parent { get; set; }
+
         public Description()
         {
             InitializeComponent();
         }
 
+        public Description(ProductDTO product, MainPage parent)
+        {
+            this.SetTopLevel(true);
+            InitializeComponent();
+            this.product = product;
+            pbxImage1.LoadAsync(product.LinkImg.ToString());
+            pbxImage1.SizeMode = PictureBoxSizeMode.Zoom;
+            pbxBigImage.LoadAsync(product.LinkImg);
+            pbxBigImage.SizeMode = PictureBoxSizeMode.Zoom;
+            pbxImage2.LoadAsync("http://artistclub.vn/upload/images/size%20tee(2).png");
+            pbxImage2.SizeMode = PictureBoxSizeMode.Zoom;
+            this.parent = parent;
+            
+        }
+
         private void Description_Load(object sender, EventArgs e)
         {
-            lb1.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height *0.17)),pnDescription.Height/18);
+
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+            ControlBox = false;
+
+            //lb1.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height *0.17)),pnDescription.Height/18);
+            DescriptionResize();
+            pnDescriptionResize();
+            pnMainResize();
+            pnBigImageResize();
+            ClickSizeM();
+            donhang.Soluong = Convert.ToInt32(lbSoLuong.Text);
+            GiaChange(donhang.Soluong.ToString());
         }
 
         private void btsizeXL_Click(object sender, EventArgs e)
         {
             ClickSizeXL();// Hàm Thay Đổi màu chữ,nền Khi Click Vào btSizeXL
+            
         }
 
         private void btsizeL_Click(object sender, EventArgs e)
         {
             ClickSizeL();// Hàm Thay Đổi màu chữ,nền Khi Click Vào btSizeL
+            
         }
 
         private void btsizeM_Click(object sender, EventArgs e)
         {
             ClickSizeM(); // Hàm Thay Đổi màu chữ,nền Khi Click Vào btSizeM
+            
         }
 
         private void btThemVaoGio_Click(object sender, EventArgs e)
@@ -48,8 +82,8 @@ namespace Project_WInForm
         }
         private void btTiepTucMuaSam_Click(object sender, EventArgs e)
         {
-            MainPage mp = new MainPage();
-            mp.Show();
+            parent.Enabled = true;
+            this.Close();
         }
 
         private void btCongSL_Click(object sender, EventArgs e)
@@ -66,41 +100,43 @@ namespace Project_WInForm
         private void pbxImage1_Click(object sender, EventArgs e)
         {
 
+            pbxBigImage.LoadAsync(product.LinkImg);
+
         }
-        private void pnImage2_Click(object sender, EventArgs e)
+        private void pbxImage2_Click(object sender, EventArgs e)
         {
-            
+            pbxBigImage.LoadAsync("http://artistclub.vn/upload/images/size%20tee(2).png");
         }
         // Hàm Cộng Số Lượng
         private void CongSL()
         {
-            sl = Convert.ToInt32(lbSoLuong.Text);
-            if (sl >= 1)
+            donhang.Soluong = Convert.ToInt32(lbSoLuong.Text);
+            if (donhang.Soluong >= 1)
             {
-                sl += 1;
-                TextChange(sl.ToString());
-                GiaChange(sl.ToString());
+                donhang.Soluong += 1;
+                TextChange(donhang.Soluong.ToString());
+                GiaChange(donhang.Soluong.ToString());
             }
             else
             {
                 //Ngược Lại
-                sl = 1;
-                TextChange(sl.ToString());
-                GiaChange(sl.ToString());
+                donhang.Soluong = 1;
+                TextChange(donhang.Soluong.ToString());
+                GiaChange(donhang.Soluong.ToString());
             }
         }
         // Hàm Trừ Số Lượng
         private void TruSL()
         {
-            sl = Convert.ToInt32(lbSoLuong.Text);
-            if (sl >= 1)
+            donhang.Soluong = Convert.ToInt32(lbSoLuong.Text);
+            if (donhang.Soluong >= 1)
             {
                 //Điểu Kiện tối thiểu để có thể trừ số lượng là phải lớn hơn 1
                 //khi nhấn nút thì biến sẽ trừ đi một giá trị
                 // sau đó gán lại lbSoLuong bằng biến mới lưu giá trị mới
-                sl -= 1;
-                TextChange(sl.ToString());
-                GiaChange(sl.ToString());
+                donhang.Soluong -= 1;
+                TextChange(donhang.Soluong.ToString());
+                GiaChange(donhang.Soluong.ToString());
             }
             else
             {
@@ -122,10 +158,12 @@ namespace Project_WInForm
             btSizeL.BackColor = Color.Black;// gán màu nền cho btSizeL khi hiện tượng click btSizeM xảy ra
             btSizeXL.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeXL khi hiện tượng click btSizeM xảy ra
             btSizeXL.BackColor = Color.Black;// gán màu nền cho btSizeXL khi hiện tượng click btSizeM xãy ra
+            donhang.Size = "M";
         }
         // hàm thay đổi màu cho btSizeL khi xảy ra hiện tượng Click chuột vào button
         private void ClickSizeL()
         {
+            donhang.Size = "L";
             btSizeL.ForeColor = Color.Aqua;// thay đổi màu chữ cho btSizeL
             btSizeL.BackColor = Color.Blue;// thay đổi nền cho btSizeL
             btSizeXL.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeXL khi hiện tượng click btSizeL xảy ra
@@ -142,49 +180,17 @@ namespace Project_WInForm
             btSizeL.BackColor = Color.Black; // gán màu nền cho btSizeL khi hiện tượng click btSizeXL xãy ra
             btSizeM.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeM khi hiện tượng click btSizeXL xảy ra
             btSizeM.BackColor = Color.Black; // gán màu nền cho btSizeM khi hiện tượng click btSizeXL xãy ra
+            donhang.Size = "XL";
         }
         //Hàm khi Tăng số lượng hay giảm số lượng thì giá sẽ giảm hoặc tăng theo
         private void GiaChange(string sl)
         {
             
-            gia = 3000000; // truyền giá trong sql server vào
-            lbGia.Text = (gia * Convert.ToInt32(sl)).ToString(); // gán lại giá trị mới cho lbGia
+            donhang.Dongia = product.Dongia; // truyền giá trong sql server vào
+            lbGia.Text = (Convert.ToDouble(product.Dongia) * Convert.ToInt32(sl)).ToString(); // gán lại giá trị mới cho lbGia
         }
 
-        private void pnMain_Resize(object sender, EventArgs e)
-        {
-            pnMainResize();
-        }
-
-        private void pnDescription_Resize(object sender, EventArgs e)
-        {
-            pnDescriptionResize();
-        }
-
-        private void pnBigImage_Resize(object sender, EventArgs e)
-        {
-            pnBigImageResize();
-  
-        }
-
-        private void pnImage1_Resize(object sender, EventArgs e)
-        {
-            pnImage1Resize(); 
-        }
-
-        private void pnImage2_Resize(object sender, EventArgs e)
-        {
-            pnImage2Resize();
-        }
-        private void Description_Resize(object sender, EventArgs e)
-        {
-            DescriptionResize();
-            pnDescriptionResize();
-            pnMainResize();
-            pnBigImageResize();
-            pnImage1Resize();
-            pnImage2Resize();
-        }
+        
         private void DescriptionResize()
         {
             pnDescription.Width = this.Width;
@@ -226,31 +232,25 @@ namespace Project_WInForm
         }
         private void pnMainResize()
         {
-            pnBigImage.Width = Convert.ToInt32(pnMain.Width * 0.7);
+            pnBigImage.Width = Convert.ToInt32(pnMain.Width * 0.8);
             pnBigImage.Height = pnMain.Height;
             pnBigImage.Location = new Point(Convert.ToInt32(pnMain.Location.X + (pnMain.Width / 6)),pnMain.Location.Y);
-            pnImage1.Width = Convert.ToInt32(pnMain.Width * 0.25);
-            pnImage1.Height = Convert.ToInt32(pnMain.Height * 0.25);
-            pnImage1.Location = new Point(pnMain.Location.X, Convert.ToInt32(pnMain.Location.Y + (pnMain.Height / 5)));
-            pnImage2.Width = Convert.ToInt32(pnMain.Width * 0.25);
-            pnImage2.Height = Convert.ToInt32(pnMain.Height * 0.25);
-            pnImage2.Location = new Point(pnMain.Location.X, Convert.ToInt32(pnImage1.Location.Y + pnImage1.Height + 25));
+            
         }
-        private void pnImage2Resize()
+        
+        private void pnlLeftResize()
         {
-            pbxImage2.Width = pnImage1.Width;
-            pbxImage2.Height = pnImage1.Height;
-            //pbxImage1;
-            pbxImage2.SizeMode = PictureBoxSizeMode.Zoom;
-            pnImage2.Controls.Add(pbxImage1);
-        }
-        private void pnImage1Resize()
-        {
-            pbxImage1.Width = pnImage1.Width;
-            pbxImage1.Height = pnImage1.Height;
-            //pbxImage1;
-            pbxImage1.SizeMode = PictureBoxSizeMode.Zoom;
-            pnImage1.Controls.Add(pbxImage1);
+
+            pnlLeft.Height = pnBigImage.Height;
+            pnlLeft.Width = this.Width - pnBigImage.Width;
+
+            pbxImage1.Width = pbxImage2.Width = Convert.ToInt32(pnlLeft.Width * 0.7);
+            pbxImage1.Height = pbxImage2.Height = Convert.ToInt32(pnlLeft.Height * 0.3);
+
+            pbxImage1.Location = new Point(Convert.ToInt32(pnlLeft.Width * 0.15), Convert.ToInt32(pnlLeft.Height * 0.15));
+            pbxImage2.Location = new Point(pbxImage1.Location.X, Convert.ToInt32((pnlLeft.Height * 0.55)));
+
+
         }
         private void pnBigImageResize()
         {
@@ -259,6 +259,11 @@ namespace Project_WInForm
             pbxBigImage.Height = Convert.ToInt32(pnBigImage.Height * 0.8);
             pnBigImage.Controls.Add(pbxBigImage);
             pbxBigImage.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void pnlLeft_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }
