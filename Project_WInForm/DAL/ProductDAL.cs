@@ -25,7 +25,7 @@ namespace DAL
                 while (reader.Read())
                 {
                     ProductDTO a = new ProductDTO();
-                    a.ProductID = reader.GetInt32(0);
+                    a.ProductID = reader.GetString(0);
                     a.ProductName = reader.GetString(1);
                     a.Dongia = reader.GetSqlMoney(2).ToString();
                     a.LinkImg = reader.GetString(3);

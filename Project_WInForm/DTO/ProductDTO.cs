@@ -9,12 +9,12 @@ namespace DTO
     public class ProductDTO
     {
 
-        int productID;
+        string productID;
         string productName;
         string dongia;
         string linkImg;
 
-        public int ProductID { get => productID; set => productID = value; }
+        public string ProductID { get => productID; set => productID = value; }
         public string ProductName { get => productName; set => productName = value; }
         public string Dongia { get => dongia; set => dongia = value; }
         public string LinkImg { get => linkImg; set => linkImg = value; }

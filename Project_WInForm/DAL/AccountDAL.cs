@@ -193,7 +193,7 @@ namespace DAL
                 //tao id de add acccount 
                 //co dinh dang Ax, x la so
                 int stt = CountingAccount();
-                string id = "A" + stt +1;
+                string id = "A" + (stt +1);
 
                 if (RegisterAccount(id, user, pass))
                 {

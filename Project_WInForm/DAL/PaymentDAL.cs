@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DTO;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -26,9 +24,10 @@ namespace DAL
                     //lay gia tri dem dc gan vao kq
                     kq = reader.GetInt32(0);
                 }
+                reader.Close();
             }catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -62,7 +61,7 @@ namespace DAL
 
             }catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -73,44 +72,56 @@ namespace DAL
             return kq;
         }
 
-        //ham them bill voi infoBill
-        public bool AddBillIncludeInfo(string billID, string accID, DateTime ngaydat, int ProductID, int soluong, string size, string tonggia)
-        {
-            bool kq = false;
-            string IDbill = "B" + CountingBill() + 1;//id bill co dinh dang Bx voi x la so thu tu cua bill.
 
-            if (AddBill(IDbill, accID, ngaydat))
+        //hàm new bill
+        public string generateBill(string AccID, DateTime ngaydat)
+        {
+            
+            string IDbill = "B" + (CountingBill() + 1);//id bill co dinh dang Bx voi x la so thu tu cua bill.
+
+            AddBill(IDbill, AccID, ngaydat);
+
+            return IDbill;
+        }
+
+
+
+        //ham them bill voi infoBill
+        public bool AddBillIncludeInfo(string billID, string ProductID, int soluong, string size, string tonggia)
+        {
+
+            bool kq = false;
+
+
+            try
             {
 
-                try
-                {
+                string sql = "insert into PaymentInfo values ( @bill, @product, @amount, @size, @total )";
+                SqlParameter bill = new SqlParameter("@bill", System.Data.SqlDbType.NVarChar);
+                SqlParameter product = new SqlParameter("@product", System.Data.SqlDbType.NVarChar);
+                SqlParameter amount = new SqlParameter("@amount", System.Data.SqlDbType.Int);
+                SqlParameter sizing = new SqlParameter("@size", System.Data.SqlDbType.NVarChar);
+                SqlParameter total = new SqlParameter("@total", System.Data.SqlDbType.Money);
 
-                    string sql = "insert into PaymentInfo values ( @bill, @product, @amount, @size, @total )";
-                    SqlParameter bill = new SqlParameter("@bill", System.Data.SqlDbType.NVarChar);
-                    SqlParameter product = new SqlParameter("@product", System.Data.SqlDbType.Int);
-                    SqlParameter amount = new SqlParameter("@amount", System.Data.SqlDbType.Int);
-                    SqlParameter sizing = new SqlParameter("@size", System.Data.SqlDbType.NVarChar);
-                    SqlParameter total = new SqlParameter("@total", System.Data.SqlDbType.Money);
+                bill.Value = billID;
+                product.Value = ProductID;
+                amount.Value = soluong;
+                sizing.Value = size;
+                total.Value = Convert.ToDouble(tonggia);
 
-                    bill.Value = IDbill;
-                    product.Value = ProductID;
-                    amount.Value = soluong;
-                    sizing.Value = size;
-                    total.Value = tonggia;
-
-                    kq = writeDataPars(sql, new[] { bill, product, amount, sizing, total });
+                kq = writeDataPars(sql, new[] { bill, product, amount, sizing, total });
 
 
-                }catch(Exception ex)
-                {
-                    ex.ToString();
-                }
-                finally
-                {
-                    closeConnection();
-                }
-
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                closeConnection();
+            }
+
+            
 
             return kq;
         }
@@ -125,8 +136,8 @@ namespace DAL
             try
             {
                 //cau lenh query lay thong tin giao dich
-                string sql = "select a.Path, a.ProductName, b.NgayDat, c.Size, c.Amount, c.TotalPrice "
-                        + "from Product a, Payment b, PaymentInfo c where c.ProductID = @id and c.BillID = b.BillID and a.ProductID = c.ProductID";
+                string sql = "select c.BillID, a.ProductName, b.NgayDat, c.Size, c.Amount, c.TotalPrice "
+                        + "from Product a, Payment b, PaymentInfo c where b.AccID = @id and c.BillID = b.BillID and a.ProductID = c.ProductID";
 
                 SqlParameter id = new SqlParameter("@id", System.Data.SqlDbType.NVarChar);
                 id.Value = Accid;
@@ -138,18 +149,18 @@ namespace DAL
                 {
                     //truyen thong tin giao dich vao danh sach
                     PaymentHistoryDTO a = new PaymentHistoryDTO();
-                    a.LinkImage = reader.GetString(0);
+                    a.BillID = reader.GetString(0);
                     a.ProductName = reader.GetString(1);
                     a.NgayDat = reader.GetDateTime(2);
                     a.Size = reader.GetString(3);
                     a.Amount = reader.GetInt32(4);
-                    a.TotalPrice = reader.GetString(5);
+                    a.TotalPrice = reader.GetSqlMoney(5).ToString();
                     list.Add(a);
                 }
-
+                reader.Close();
             }catch(Exception ex)
             {
-                ex.ToString();
+                MessageBox.Show(ex.Message);
             }
             finally
             {

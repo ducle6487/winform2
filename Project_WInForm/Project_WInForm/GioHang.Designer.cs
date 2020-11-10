@@ -59,6 +59,7 @@
             this.btPay.TabIndex = 1;
             this.btPay.Text = "Thanh toán";
             this.btPay.UseVisualStyleBackColor = true;
+            this.btPay.Click += new System.EventHandler(this.btPay_Click);
             // 
             // btBack
             // 

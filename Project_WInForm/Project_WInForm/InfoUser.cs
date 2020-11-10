@@ -30,7 +30,7 @@ namespace Project_WInForm
 
         public MainPage showForm { get; set; }
 
-        HistoryTrade history = new HistoryTrade();
+        HistoryTrade history;
 
         InfoAccDTO info = new InfoAccDTO();
 
@@ -38,6 +38,7 @@ namespace Project_WInForm
 
         private void btChangeInfo_Click(object sender, EventArgs e)
         {
+
             CallToChildForm(changeInfo);
             selectColor(btChangeInfo, btHistory);
         }
@@ -45,6 +46,7 @@ namespace Project_WInForm
         private void btHistory_Click(object sender, EventArgs e)
         {
             CallToChildForm(history);
+            
             selectColor(btHistory, btChangeInfo);
         }
 
@@ -76,6 +78,8 @@ namespace Project_WInForm
 
         private void InfoUser_Load(object sender, EventArgs e)
         {
+            history = new HistoryTrade(info.AccID);
+            
             changeInfo.InfoUser = this;
             changeInfo.info = info;
             changeInfo.loadTextbox();

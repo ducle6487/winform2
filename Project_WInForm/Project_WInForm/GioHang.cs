@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,16 +20,27 @@ namespace Project_WInForm
             InitializeComponent();
         }
 
+        PaymentBAL paymentBAL = new PaymentBAL();
+
+        ProductBAL productBAL = new ProductBAL();
+
+        List<ProductDTO> listProduct = new List<ProductDTO>();
+
+        List<string> listProductID = new List<string>();
+
         public GioHang(MainPage parent)
         {
             InitializeComponent();
             this.parent = parent;
         }
 
+        //list sản phẩm tạm dùng để lưu thông tin cần xóa khi nhấn xóa 1 don hàng trong giỏ
+        List<GioHangDTO> listGioHangTemp = new List<GioHangDTO>();
 
-        List<GioHangDTO> listGioHangDeleted = new List<GioHangDTO>();
 
         List<Label> listLabelSoLuong = new List<Label>();
+
+        List<Label> listLabelPrice = new List<Label>();
 
         MainPage parent {get;set;}
 
@@ -38,6 +50,9 @@ namespace Project_WInForm
             
             resizeForm();
             setupUIFlowlayoutPanel();
+            listGioHangTemp = parent.ListGioHang;
+            reloadTotalPrice();
+            listProduct = productBAL.GetDataProduct();
         }
 
 
@@ -88,7 +103,7 @@ namespace Project_WInForm
 
                 Label lbGia = new Label();
                 pnlCover.Controls.Add(lbGia);
-
+                listLabelPrice.Add(lbGia);
                 lbGia.Text = parent.ListGioHang[i].Size + "  |  " + (Convert.ToDouble(parent.ListGioHang[i].Dongia) * parent.ListGioHang[i].Soluong).ToString();
                 lbGia.Location = new Point(Convert.ToInt32((this.Width * 0.77) - (lbGia.Width / 2)),Convert.ToInt32((pnlCover.Height / 4) - (lbGia.Height / 2)));
                 lbGia.Font = new Font("Arial", 13, FontStyle.Regular);
@@ -117,6 +132,7 @@ namespace Project_WInForm
                 btPlus.Text = "+";
                 btPlus.Location = new Point(lbSoLuong.Location.X + lbSoLuong.Width, lbSoLuong.Location.Y-1);
                 btPlus.Tag = i.ToString();
+                btPlus.Click += PlusSoLuong_click;
 
                 Button btMinus = new Button();
                 pnlCover.Controls.Add(btMinus);
@@ -125,7 +141,7 @@ namespace Project_WInForm
                 btMinus.Text = "-";
                 btMinus.Location = new Point(lbSoLuong.Location.X - btMinus.Width, lbSoLuong.Location.Y-1);
                 btMinus.Tag = i.ToString();
-
+                btMinus.Click += MinusSoLuong_click;
 
                 fpnlSanPham.Controls.Add(pnlCover);
 
@@ -141,7 +157,9 @@ namespace Project_WInForm
             if (result == DialogResult.Yes)
             {
                 Label lb = sender as Label;
-                listGioHangDeleted.Add(parent.ListGioHang[Convert.ToInt32(lb.Tag)]);
+
+                parent.ListGioHang.RemoveAll(item => item.ProductName == listGioHangTemp[Convert.ToInt32(lb.Tag)].ProductName && item.Size == listGioHangTemp[Convert.ToInt32(lb.Tag)].Size);
+                reloadTotalPrice();
                 fpnlSanPham.Controls.RemoveAt(Convert.ToInt32(lb.Tag));
             }
 
@@ -149,16 +167,23 @@ namespace Project_WInForm
 
         }
 
-        private void updateParentListGioHang()
+        private void reloadPriceAndAmount(Button bt)
         {
-
-            
-            
+            listLabelSoLuong[Convert.ToInt32(bt.Tag)].Text = parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong.ToString();
+            listLabelPrice[Convert.ToInt32(bt.Tag)].Text = parent.ListGioHang[Convert.ToInt32(bt.Tag)].Size + "  |  " + (Convert.ToDouble(parent.ListGioHang[Convert.ToInt32(bt.Tag)].Dongia) * parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong).ToString();
         }
 
         private void reloadTotalPrice()
         {
-            
+
+            double kq = 0;
+            foreach (GioHangDTO donhang in parent.ListGioHang)
+            {
+                kq += Convert.ToDouble(donhang.Dongia) * donhang.Soluong;
+            }
+
+            lbTotalPrice.Text = "Thành Tiền: " + kq.ToString();
+
         }
 
         private void MinusSoLuong_click(object sender, EventArgs e)
@@ -166,13 +191,32 @@ namespace Project_WInForm
 
             Button bt = sender as Button;
 
+            if (parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong > 1)
+            {
 
+
+                parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong -= 1;
+                reloadPriceAndAmount(bt);
+                reloadTotalPrice();
+            }
+            else
+            {
+                //Ngược Lại
+
+            }
 
         }
 
         private void PlusSoLuong_click(object sender, EventArgs e)
         {
 
+            Button bt = sender as Button;
+            if (parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong >= 1)
+            {
+                parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong += 1;
+                reloadPriceAndAmount(bt);
+                reloadTotalPrice();
+            }
 
 
         }
@@ -213,9 +257,49 @@ namespace Project_WInForm
         {
 
             parent.Enabled = true;
-            updateParentListGioHang();
             parent.reloadSoluong();
             this.Close();
+        }
+
+        private void btPay_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn thanh toán chứ ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                DateTime currentDay = DateTime.Today;
+
+                string BillID = paymentBAL.generateBill(parent.infoUser.AccID, currentDay);
+                getListProductID();
+
+                for(int i = 0; i < parent.ListGioHang.Count; i++)
+                {
+                    double tonggia = parent.ListGioHang[i].Soluong * Convert.ToDouble(parent.ListGioHang[i].Dongia);
+
+                    paymentBAL.AddBillIncludeInfo(BillID, listProductID[i], parent.ListGioHang[i].Soluong, parent.ListGioHang[i].Size, tonggia.ToString());
+                }
+
+                
+
+                parent.Enabled = true;
+                parent.ListGioHang.Clear();
+                parent.reloadSoluong();
+                this.Close();
+                MessageBox.Show("Đơn Hàng đã được gửi đi. Vui lòng xác nhận khi được gọi điện.");
+            }
+        }
+
+        private void getListProductID()
+        {
+            foreach (GioHangDTO donhang in parent.ListGioHang)
+            {
+                foreach (ProductDTO product in listProduct)
+                {
+                    if(donhang.ProductName == product.ProductName)
+                    {
+                        listProductID.Add(product.ProductID);
+                    }
+                }
+            }
         }
     }
 }

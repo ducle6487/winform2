@@ -19,6 +19,12 @@ namespace Project_WInForm
             InitializeComponent();
         }
 
+        public HistoryTrade(string AccID)
+        {
+            InitializeComponent();
+            this.Accid = AccID;
+        }
+
         string Accid = "";
 
         PaymentBAL bal = new PaymentBAL();
@@ -28,7 +34,6 @@ namespace Project_WInForm
 
             dgvHistory.Width = this.Width;
             dgvHistory.Height = this.Height;
-
             List<PaymentHistoryDTO> list = bal.GetInfoPaymentFromAccID(Accid);
             dgvHistory.DataSource = list;
 

@@ -13,9 +13,14 @@ namespace BAL
 
         PaymentDAL dal = new PaymentDAL();
 
-        public bool AddBillIncludeInfo(string billID, string accID, DateTime ngaydat, int ProductID, int soluong, string size, string tonggia)
+        public bool AddBillIncludeInfo(string billID, string ProductID, int soluong, string size, string tonggia)
         {
-            return dal.AddBillIncludeInfo(billID, accID, ngaydat, ProductID, soluong, size, tonggia);
+            return dal.AddBillIncludeInfo(billID, ProductID, soluong, size, tonggia);
+        }
+
+        public string generateBill(string AccID, DateTime ngaydat)
+        {
+            return dal.generateBill(AccID,ngaydat);
         }
 
         public List<PaymentHistoryDTO> GetInfoPaymentFromAccID(string Accid)

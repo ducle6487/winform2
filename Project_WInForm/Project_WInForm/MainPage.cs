@@ -32,13 +32,14 @@ namespace Project_WInForm
         public List<GioHangDTO> ListGioHang = new List<GioHangDTO>();
 
         
+
         string giohang;
         
         //bien nhan accid ma user da dang nhap
         public string userName = "";
 
         //bien chua thong tin user da dang nhap
-        InfoAccDTO infoUser;
+        public InfoAccDTO infoUser;
 
         //bien chua AccountBAL
         AccountBAL bal = new AccountBAL();
