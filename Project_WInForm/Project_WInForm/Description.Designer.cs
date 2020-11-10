@@ -75,7 +75,6 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(230, 545);
             this.pnlLeft.TabIndex = 5;
-            this.pnlLeft.Resize += new System.EventHandler(this.pnlLeft_Resize);
             // 
             // pbxImage2
             // 

@@ -79,6 +79,11 @@ namespace Project_WInForm
         private void btThemVaoGio_Click(object sender, EventArgs e)
         {
 
+            donhang.ImgLink = product.LinkImg;
+            
+            parent.ListPayment.Add(donhang);
+
+
         }
         private void btTiepTucMuaSam_Click(object sender, EventArgs e)
         {
@@ -261,9 +266,5 @@ namespace Project_WInForm
             pbxBigImage.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
-        private void pnlLeft_Resize(object sender, EventArgs e)
-        {
-
-        }
     }
 }
