@@ -12,9 +12,9 @@ using DTO;
 
 namespace Project_WInForm
 {
-    public partial class Account : Form
+    public partial class AccountInfoForAdmin : Form
     {
-        public Account()
+        public AccountInfoForAdmin()
         {
             InitializeComponent();
         }

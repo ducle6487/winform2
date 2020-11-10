@@ -1,6 +1,6 @@
 ﻿namespace Project_WInForm
 {
-    partial class Account
+    partial class AccountInfoForAdmin
     {
         /// <summary>
         /// Required designer variable.

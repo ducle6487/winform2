@@ -30,7 +30,7 @@ namespace DAL
                     s.TenSP = reader.GetString(3);
                     s.Size = reader.GetString(4);
                     s.SoLuong = reader.GetInt32(5);
-                    s.TotalPrice = reader.GetString(6);
+                    s.TotalPrice = reader.GetSqlMoney(6).ToString();
                     list.Add(s);
                 }
                 reader.Close();

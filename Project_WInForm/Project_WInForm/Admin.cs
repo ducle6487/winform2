@@ -18,7 +18,7 @@ namespace Project_WInForm
             InitializeComponent();
         }
 
-        Account account = new Account();
+        AccountInfoForAdmin account = new AccountInfoForAdmin();
 
         SaleHistory sale = new SaleHistory();
 

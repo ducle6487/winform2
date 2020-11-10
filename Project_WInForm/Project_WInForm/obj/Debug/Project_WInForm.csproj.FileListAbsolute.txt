@@ -24,5 +24,5 @@ C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.HistoryTrade.resources
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.HoaDon.resources
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.Admin.resources
-C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.Account.resources
 C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.SaleHistory.resources
+C:\Users\AnhDuc\Source\Repos\winform2\Project_WInForm\Project_WInForm\obj\Debug\Project_WInForm.AccountInfoForAdmin.resources
