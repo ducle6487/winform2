@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,20 +19,162 @@ namespace Project_WInForm
             InitializeComponent();
         }
 
-        List<GioHangDTO> list = new List<GioHangDTO>();
-
-
-        public GioHang(List<GioHangDTO> list)
+        public GioHang(MainPage parent)
         {
             InitializeComponent();
-            this.list = list;
+            this.parent = parent;
         }
+
+
+        List<GioHangDTO> listGioHangDeleted = new List<GioHangDTO>();
+
+        List<Label> listLabelSoLuong = new List<Label>();
+
+        MainPage parent {get;set;}
 
 
         private void GioHang_Load(object sender, EventArgs e)
         {
-            resizeForm();
             
+            resizeForm();
+            setupUIFlowlayoutPanel();
+        }
+
+
+        private void setupUIFlowlayoutPanel()
+        {
+
+            
+            for(int i = 0; i < parent.ListGioHang.Count; i++)
+            {
+
+                Panel pnlCover = new Panel();
+
+                pnlCover.Height = Convert.ToInt32(fpnlSanPham.Height / 4.25);
+                pnlCover.Width = this.Width;
+                pnlCover.BackColor = Color.White;
+
+                PictureBox ptbImage = new PictureBox();
+                pnlCover.Controls.Add(ptbImage);
+                ptbImage.LoadAsync(parent.ListGioHang[i].ImgLink);
+                ptbImage.SizeMode = PictureBoxSizeMode.Zoom;
+                pnlCover.BackColor = Color.White;
+                ptbImage.Height = pnlCover.Height;
+                ptbImage.Width = Convert.ToInt32(pnlCover.Width * 0.2);
+                ptbImage.Location = new Point(0, 0);
+
+
+                Label lbName = new Label();
+                pnlCover.Controls.Add(lbName);
+                lbName.Text = parent.ListGioHang[i].ProductName;
+                lbName.ForeColor = Color.Black;
+                //lbName.MaximumSize = new System.Drawing.Size(Convert.ToInt32(this.Width * 0.4), lbName.Height);
+                lbName.AutoEllipsis = true;
+                lbName.AutoSize = true;
+                lbName.Location = new Point(ptbImage.Width + 30, Convert.ToInt32((pnlCover.Height / 2) - lbName.Height - 15));
+                lbName.Font = new Font("Arial", 16, FontStyle.Regular);
+
+                Label lbDelete = new Label();
+                pnlCover.Controls.Add(lbDelete);
+                lbDelete.ForeColor = Color.Red;
+                lbDelete.BackColor = Color.White;
+                lbDelete.Font = new Font("Arial", 9, FontStyle.Italic);
+                lbDelete.Height = 30;
+                lbDelete.Width = 70;
+                lbDelete.Location = new Point(lbName.Location.X, Convert.ToInt32(pnlCover.Height / 2) + 15);
+                lbDelete.Text = "Xóa";
+                lbDelete.Tag = i.ToString();
+                lbDelete.Click += XoaSanPham_click;
+
+                Label lbGia = new Label();
+                pnlCover.Controls.Add(lbGia);
+
+                lbGia.Text = parent.ListGioHang[i].Size + "  |  " + (Convert.ToDouble(parent.ListGioHang[i].Dongia) * parent.ListGioHang[i].Soluong).ToString();
+                lbGia.Location = new Point(Convert.ToInt32((this.Width * 0.77) - (lbGia.Width / 2)),Convert.ToInt32((pnlCover.Height / 4) - (lbGia.Height / 2)));
+                lbGia.Font = new Font("Arial", 13, FontStyle.Regular);
+                lbGia.AutoEllipsis = true;
+                lbGia.AutoSize = true;
+
+
+
+                Label lbSoLuong = new Label();
+                listLabelSoLuong.Add(lbSoLuong);
+                pnlCover.Controls.Add(lbSoLuong);
+                lbSoLuong.Text = parent.ListGioHang[i].Soluong.ToString();
+                lbSoLuong.Font = new Font("Arial", 11, FontStyle.Bold);
+                lbSoLuong.Location = new Point(Convert.ToInt32(lbGia.Location.X + (lbGia.Width / 2)), Convert.ToInt32((pnlCover.Height * 0.65)));
+                lbSoLuong.Width = 35;
+                lbSoLuong.Height = 28;
+                lbSoLuong.BackColor = Color.White;
+                lbSoLuong.TextAlign = ContentAlignment.MiddleCenter;
+                lbSoLuong.BorderStyle = BorderStyle.FixedSingle;
+
+
+                Button btPlus = new Button();
+                pnlCover.Controls.Add(btPlus);
+                btPlus.Width = btPlus.Height = 30;
+                btPlus.Font = new Font("Arial", 13, FontStyle.Bold);
+                btPlus.Text = "+";
+                btPlus.Location = new Point(lbSoLuong.Location.X + lbSoLuong.Width, lbSoLuong.Location.Y-1);
+                btPlus.Tag = i.ToString();
+
+                Button btMinus = new Button();
+                pnlCover.Controls.Add(btMinus);
+                btMinus.Width = btMinus.Height = 30;
+                btMinus.Font = new Font("Arial", 13, FontStyle.Bold);
+                btMinus.Text = "-";
+                btMinus.Location = new Point(lbSoLuong.Location.X - btMinus.Width, lbSoLuong.Location.Y-1);
+                btMinus.Tag = i.ToString();
+
+
+                fpnlSanPham.Controls.Add(pnlCover);
+
+            }
+
+
+        }
+
+        private void XoaSanPham_click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa chứ ?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Label lb = sender as Label;
+                listGioHangDeleted.Add(parent.ListGioHang[Convert.ToInt32(lb.Tag)]);
+                fpnlSanPham.Controls.RemoveAt(Convert.ToInt32(lb.Tag));
+            }
+
+            
+
+        }
+
+        private void updateParentListGioHang()
+        {
+
+            
+            
+        }
+
+        private void reloadTotalPrice()
+        {
+            
+        }
+
+        private void MinusSoLuong_click(object sender, EventArgs e)
+        {
+
+            Button bt = sender as Button;
+
+
+
+        }
+
+        private void PlusSoLuong_click(object sender, EventArgs e)
+        {
+
+
+
         }
 
         private void resizeForm()
@@ -66,5 +209,13 @@ namespace Project_WInForm
             lbTittle.Location = new Point(Convert.ToInt32((pnlTop.Width / 2) - (lbTittle.Width / 2)),Convert.ToInt32((pnlTop.Height / 2)- (lbTittle.Height / 2)));
         }
 
+        private void btBack_Click(object sender, EventArgs e)
+        {
+
+            parent.Enabled = true;
+            updateParentListGioHang();
+            parent.reloadSoluong();
+            this.Close();
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Project_WInForm
         }
 
         //danh sách chứa các mặt hàng thệm vào giỏ hàng
-        public List<GioHangDTO> ListPayment = new List<GioHangDTO>();
+        public List<GioHangDTO> ListGioHang = new List<GioHangDTO>();
 
         
         string giohang;
@@ -63,7 +63,7 @@ namespace Project_WInForm
 
         public void reloadSoluong()
         {
-            giohang = "Giỏ Hàng: " + ListPayment.Count;
+            giohang = "Giỏ Hàng: " + ListGioHang.Count;
             lbGioHang.Text = giohang;
         }
 
@@ -242,9 +242,13 @@ namespace Project_WInForm
         {
 
             //MessageBox.Show("show gio hang truyen vao list giohanginfo va accinfo(infoUser)");
-            GioHang g = new GioHang();
+            GioHang g = new GioHang(this);
 
-            MessageBox.Show(ListPayment[0].ImgLink);
+            g.Show();
+            
+            this.Enabled = false;
+
+            //MessageBox.Show(ListPayment[0].Dongia);
 
         }
 

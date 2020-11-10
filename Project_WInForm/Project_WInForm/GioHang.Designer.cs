@@ -68,6 +68,7 @@
             this.btBack.TabIndex = 1;
             this.btBack.Text = "Tiếp tục mua";
             this.btBack.UseVisualStyleBackColor = true;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
             // 
             // lbTotalPrice
             // 
@@ -76,9 +77,9 @@
             this.lbTotalPrice.ForeColor = System.Drawing.Color.White;
             this.lbTotalPrice.Location = new System.Drawing.Point(487, 3);
             this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(348, 32);
+            this.lbTotalPrice.Size = new System.Drawing.Size(220, 32);
             this.lbTotalPrice.TabIndex = 0;
-            this.lbTotalPrice.Text = "Thành Tiền:  111100000 đ";
+            this.lbTotalPrice.Text = "Thành Tiền:  0 đ";
             // 
             // pnlTop
             // 

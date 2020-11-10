@@ -19,6 +19,8 @@ namespace Project_WInForm
 
         ProductDTO product = new ProductDTO();
 
+        bool isExistInList = false;
+
         MainPage parent { get; set; }
 
         public Description()
@@ -47,6 +49,8 @@ namespace Project_WInForm
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
             ControlBox = false;
+
+            btTruSL.Enabled = false;
 
             //lb1.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height *0.17)),pnDescription.Height/18);
             DescriptionResize();
@@ -79,9 +83,28 @@ namespace Project_WInForm
         private void btThemVaoGio_Click(object sender, EventArgs e)
         {
 
-            donhang.ImgLink = product.LinkImg;
             
-            parent.ListPayment.Add(donhang);
+
+            donhang.Dongia = product.Dongia;
+            donhang.ImgLink = product.LinkImg;
+            donhang.ProductName = product.ProductName;
+
+            for (int i = 0; i < parent.ListGioHang.Count; i++)
+            {
+                if(donhang.ProductName == parent.ListGioHang[i].ProductName && donhang.Size == parent.ListGioHang[i].Size)
+                {
+                    isExistInList = true;
+                    parent.ListGioHang[i].Soluong += donhang.Soluong;
+                }
+            }
+            if(isExistInList == false)
+            {
+                parent.ListGioHang.Add(donhang);
+            }
+            
+            parent.Enabled = true;
+            parent.reloadSoluong();
+            this.Close();
 
 
         }
@@ -115,6 +138,7 @@ namespace Project_WInForm
         // Hàm Cộng Số Lượng
         private void CongSL()
         {
+            btTruSL.Enabled = true;
             donhang.Soluong = Convert.ToInt32(lbSoLuong.Text);
             if (donhang.Soluong >= 1)
             {
@@ -134,14 +158,19 @@ namespace Project_WInForm
         private void TruSL()
         {
             donhang.Soluong = Convert.ToInt32(lbSoLuong.Text);
-            if (donhang.Soluong >= 1)
+            if (donhang.Soluong > 1)
             {
+                
                 //Điểu Kiện tối thiểu để có thể trừ số lượng là phải lớn hơn 1
                 //khi nhấn nút thì biến sẽ trừ đi một giá trị
                 // sau đó gán lại lbSoLuong bằng biến mới lưu giá trị mới
                 donhang.Soluong -= 1;
                 TextChange(donhang.Soluong.ToString());
                 GiaChange(donhang.Soluong.ToString());
+                if(donhang.Soluong == 1)
+                {
+                    btTruSL.Enabled = false;
+                }
             }
             else
             {
