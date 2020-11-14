@@ -19,12 +19,14 @@ namespace Project_WInForm
             InitializeComponent();
         }
 
-
+        List<GenderDTO> listGender = new List<GenderDTO>();
         public InfoUser InfoUser { get; set; }
 
         public InfoAccDTO info { get; set; }
 
-        AccountBAL bal = new AccountBAL();
+        AccountBAL balAccount = new AccountBAL();
+
+        GenderBAL balGender = new GenderBAL();
 
         public void loadTextbox()
         {
@@ -41,7 +43,7 @@ namespace Project_WInForm
             if (txtFullName.Text != "" && txtAge.Text != "" && txtAddress.Text != "" && txtPhoneNumber.Text != "" && cbGender.Text != "") 
             {
 
-                if (bal.UpdateInfoAccount(info.AccID, txtFullName.Text, txtAddress.Text, Convert.ToInt32(txtAge.Text), cbGender.Text, txtPhoneNumber.Text))
+                if (balAccount.UpdateInfoAccount(info.AccID, txtFullName.Text, txtAddress.Text, Convert.ToInt32(txtAge.Text), cbGender.Text, txtPhoneNumber.Text))
                 {
                     MessageBox.Show("Cập nhật thành công");
                     InfoUser.statusClose = 2;
@@ -70,7 +72,7 @@ namespace Project_WInForm
                 }
                 else
                 {
-                    if (bal.ChangePassword(info.AccID, txtmk1.Text, txtmk2.Text))
+                    if (balAccount.ChangePassword(info.AccID, txtmk1.Text, txtmk2.Text))
                     {
                         MessageBox.Show("Đổi mật khẩu thành công");
                     }
@@ -91,7 +93,19 @@ namespace Project_WInForm
         {
 
             resizeForm();
-            
+
+            listGender = balGender.GetInfoGender();
+
+            List<string> listTempGender = new List<string>();
+
+            foreach (GenderDTO item in listGender)
+            {
+                listTempGender.Add(item.Des1);
+            }
+
+            cbGender.DataSource = listTempGender;
+
+
         }
 
         private void resizeForm()

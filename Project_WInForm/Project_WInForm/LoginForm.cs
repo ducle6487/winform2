@@ -27,6 +27,7 @@ namespace Project_WInForm
         private void LoginForm_Load(object sender, EventArgs e)
         { 
             resizeForm();
+            pnlLogin.BackColor = Color.FromArgb(100, 0, 0, 0);
             
         }
 
@@ -59,8 +60,16 @@ namespace Project_WInForm
             pnlLogin.Location = new Point(Convert.ToInt32((this.Width / 2)-(pnlLogin.Width / 2)),Convert.ToInt32((this.Height / 2) - (pnlLogin.Width / 2)));
 
             lbLogin.Location = new Point(Convert.ToInt32((pnlLogin.Width / 2) - (lbLogin.Width / 2)));
-            
 
+            lbLogin.Location = new Point(Convert.ToInt32((pnlLogin.Width / 2) - (lbLogin.Width / 2)));
+            txtUser.Location = new Point(Convert.ToInt32(pnlLogin.Width * 0.35),Convert.ToInt32(pnlLogin.Height * 0.4));
+            txtPassword.Location = new Point(txtUser.Location.X, txtUser.Location.Y + (txtUser.Height * 2));
+
+            lbUser.Location = new Point(Convert.ToInt32(pnlLogin.Width * 0.05),Convert.ToInt32(txtUser.Location.Y + (txtUser.Height / 4)));
+            lbPass.Location = new Point(lbUser.Location.X, lbUser.Location.Y + (txtUser.Height * 2));
+
+            btnRegister.Location = new Point(Convert.ToInt32((pnlLogin.Width / 2) - 40 - btnLogin.Width), Convert.ToInt32(pnlLogin.Height * 0.75));
+            btnLogin.Location = new Point(Convert.ToInt32(pnlLogin.Width / 2) + 40, btnRegister.Location.Y);
         }
         
         private bool textboxIsFilled()

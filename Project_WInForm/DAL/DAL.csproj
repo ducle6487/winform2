@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AccountDAL.cs" />
     <Compile Include="DatabaseService.cs" />
+    <Compile Include="GenderDAL.cs" />
     <Compile Include="PaymentDAL.cs" />
     <Compile Include="ProductDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

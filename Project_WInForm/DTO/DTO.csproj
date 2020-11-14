@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountDTO.cs" />
+    <Compile Include="GenderDTO.cs" />
     <Compile Include="GioHangDTO.cs" />
     <Compile Include="InfoAccDTO.cs" />
     <Compile Include="InfoPaymentDTO.cs" />

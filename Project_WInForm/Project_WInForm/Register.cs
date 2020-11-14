@@ -8,16 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BAL;
+using DTO;
 
 namespace Project_WInForm
 {
     public partial class Register : Form
     {
-        AccountBAL bal = new AccountBAL();
+        AccountBAL balAccount = new AccountBAL();
+
+        GenderBAL balGender = new GenderBAL();
+
         public Register()
         {
             InitializeComponent();
         }
+
+        List<GenderDTO> listGender = new List<GenderDTO>();
 
         public LoginForm parentForm {get;set;}
         
@@ -26,6 +32,18 @@ namespace Project_WInForm
             pnRegister.BackColor = Color.FromArgb(100, 0, 0, 0); //Cho màu của panel Login đổi xuống màu tối
             pnRegister.Location = new Point(Convert.ToInt32((this.Width / 2) - (pnRegister.Width / 2)), Convert.ToInt32((this.Height / 2) - (pnRegister.Width / 2)));
             lbTitle.Location = new Point(Convert.ToInt32((this.Width / 2) - (lbTitle.Width / 2)), Convert.ToInt32((this.Height / 12)));
+
+            listGender = balGender.GetInfoGender();
+            Console.WriteLine(listGender[0].Des1);
+
+            List<string> listTempGender = new List<string>();
+
+            foreach( GenderDTO item in listGender)
+            {
+                listTempGender.Add(item.Des1);
+            }
+
+            cbGender.DataSource = listTempGender;
             
         }
 
@@ -71,7 +89,7 @@ namespace Project_WInForm
                     }
                     else
                     {
-                        if (bal.RegisterAccountIncludeInfo(txtUser.Text, txtPassword.Text, txtFullName.Text, txtAddress.Text, Convert.ToInt32(txtAge.Text), cbGender.Text, txtPhoneNumber.Text))
+                        if (balAccount.RegisterAccountIncludeInfo(txtUser.Text, txtPassword.Text, txtFullName.Text, txtAddress.Text, Convert.ToInt32(txtAge.Text), cbGender.Text, txtPhoneNumber.Text))
                         {
                             MessageBox.Show("Đăng ký thành công");
                             parentForm.user = txtUser.Text;

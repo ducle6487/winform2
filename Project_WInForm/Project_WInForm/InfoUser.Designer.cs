@@ -88,7 +88,7 @@
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlToolbox);
             this.Name = "InfoUser";
-            this.Text = "ChangeInfo";
+            this.Text = "InfoUSer";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InfoUser_FormClosed);
             this.Load += new System.EventHandler(this.InfoUser_Load);
             this.Resize += new System.EventHandler(this.InfoUser_Resize);

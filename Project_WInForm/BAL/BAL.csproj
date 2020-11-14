@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBAL.cs" />
+    <Compile Include="GenderBAL.cs" />
     <Compile Include="PaymentBAL.cs" />
     <Compile Include="ProductBAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

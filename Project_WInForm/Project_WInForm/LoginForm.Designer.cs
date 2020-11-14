@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.pnlBG = new System.Windows.Forms.Panel();
             this.pnlLogin = new System.Windows.Forms.Panel();
             this.lbLogin = new System.Windows.Forms.Label();
@@ -43,6 +44,8 @@
             // 
             // pnlBG
             // 
+            this.pnlBG.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlBG.BackgroundImage")));
+            this.pnlBG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlBG.Controls.Add(this.pnlLogin);
             this.pnlBG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBG.Location = new System.Drawing.Point(0, 0);
@@ -59,16 +62,18 @@
             this.pnlLogin.Controls.Add(this.btnRegister);
             this.pnlLogin.Controls.Add(this.txtPassword);
             this.pnlLogin.Controls.Add(this.txtUser);
-            this.pnlLogin.Location = new System.Drawing.Point(324, 224);
+            this.pnlLogin.Location = new System.Drawing.Point(222, 192);
             this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(542, 581);
-            this.pnlLogin.TabIndex = 0;
+            this.pnlLogin.Size = new System.Drawing.Size(701, 711);
+            this.pnlLogin.TabIndex = 2;
             // 
             // lbLogin
             // 
             this.lbLogin.AutoSize = true;
+            this.lbLogin.BackColor = System.Drawing.Color.Transparent;
             this.lbLogin.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLogin.Location = new System.Drawing.Point(3, 0);
+            this.lbLogin.ForeColor = System.Drawing.Color.White;
+            this.lbLogin.Location = new System.Drawing.Point(173, 9);
             this.lbLogin.Name = "lbLogin";
             this.lbLogin.Size = new System.Drawing.Size(351, 59);
             this.lbLogin.TabIndex = 18;
@@ -77,8 +82,10 @@
             // lbUser
             // 
             this.lbUser.AutoSize = true;
+            this.lbUser.BackColor = System.Drawing.Color.Transparent;
             this.lbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUser.Location = new System.Drawing.Point(2, 241);
+            this.lbUser.ForeColor = System.Drawing.Color.White;
+            this.lbUser.Location = new System.Drawing.Point(71, 250);
             this.lbUser.Name = "lbUser";
             this.lbUser.Size = new System.Drawing.Size(124, 29);
             this.lbUser.TabIndex = 19;
@@ -87,8 +94,10 @@
             // lbPass
             // 
             this.lbPass.AutoSize = true;
+            this.lbPass.BackColor = System.Drawing.Color.Transparent;
             this.lbPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPass.Location = new System.Drawing.Point(2, 317);
+            this.lbPass.ForeColor = System.Drawing.Color.White;
+            this.lbPass.Location = new System.Drawing.Point(71, 326);
             this.lbPass.Name = "lbPass";
             this.lbPass.Size = new System.Drawing.Size(120, 29);
             this.lbPass.TabIndex = 20;
@@ -98,7 +107,7 @@
             // 
             this.btnLogin.BackColor = System.Drawing.Color.Transparent;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(342, 505);
+            this.btnLogin.Location = new System.Drawing.Point(411, 514);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(200, 75);
@@ -111,7 +120,7 @@
             // 
             this.btnRegister.BackColor = System.Drawing.Color.Transparent;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(0, 505);
+            this.btnRegister.Location = new System.Drawing.Point(69, 514);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(200, 75);
@@ -123,7 +132,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(181, 314);
+            this.txtPassword.Location = new System.Drawing.Point(250, 323);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -133,7 +142,7 @@
             // txtUser
             // 
             this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(181, 241);
+            this.txtUser.Location = new System.Drawing.Point(250, 250);
             this.txtUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(357, 35);
