@@ -28,6 +28,8 @@ namespace Project_WInForm
 
         List<string> listProductID = new List<string>();
 
+        List<Label> listOfPanelInFpnl = new List<Label>();
+
         public GioHang(MainPage parent)
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace Project_WInForm
 
         //list sản phẩm tạm dùng để lưu thông tin cần xóa khi nhấn xóa 1 don hàng trong giỏ
         List<GioHangDTO> listGioHangTemp = new List<GioHangDTO>();
+
 
 
         List<Label> listLabelSoLuong = new List<Label>();
@@ -53,8 +56,31 @@ namespace Project_WInForm
             listGioHangTemp = parent.ListGioHang;
             reloadTotalPrice();
             listProduct = productBAL.GetDataProduct();
+            enablePay();
+            
         }
 
+        private void enablePay()
+        {
+            if (parent.ListGioHang.Count <= 0)
+            {
+                btPay.Enabled = false;
+            }
+            else
+            {
+                btPay.Enabled = true;
+            }
+        }
+
+
+        private void reChangeLableTag(Label lb)
+        {
+            listOfPanelInFpnl.RemoveAt(Convert.ToInt32(lb.Tag.ToString()));
+            for(int i = 0; i < listOfPanelInFpnl.Count; i++)
+            {
+                listOfPanelInFpnl[i].Tag = i.ToString();
+            }
+        }
 
         private void setupUIFlowlayoutPanel()
         {
@@ -100,6 +126,7 @@ namespace Project_WInForm
                 lbDelete.Text = "Xóa";
                 lbDelete.Tag = i.ToString();
                 lbDelete.Click += XoaSanPham_click;
+                listOfPanelInFpnl.Add(lbDelete);
 
                 Label lbGia = new Label();
                 pnlCover.Controls.Add(lbGia);
@@ -157,10 +184,16 @@ namespace Project_WInForm
             if (result == DialogResult.Yes)
             {
                 Label lb = sender as Label;
+                string name = listGioHangTemp[Convert.ToInt32(lb.Tag)].ProductName;
+                string sizeproduct = listGioHangTemp[Convert.ToInt32(lb.Tag)].Size;
 
+                
                 parent.ListGioHang.RemoveAll(item => item.ProductName == listGioHangTemp[Convert.ToInt32(lb.Tag)].ProductName && item.Size == listGioHangTemp[Convert.ToInt32(lb.Tag)].Size);
                 reloadTotalPrice();
-                fpnlSanPham.Controls.RemoveAt(Convert.ToInt32(lb.Tag));
+                fpnlSanPham.Controls.RemoveAt(Convert.ToInt32(lb.Tag.ToString()));
+                reChangeLableTag(lb);
+
+                enablePay();
             }
 
             

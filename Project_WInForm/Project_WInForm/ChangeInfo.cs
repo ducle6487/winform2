@@ -37,20 +37,46 @@ namespace Project_WInForm
             cbGender.Text = info.Gioitinh;
         }
 
+        private bool checkNumber(string str)
+        {
+            for(int i = 0; i < str.Length; i++)
+            {
+                if (!Char.IsDigit(str[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private void btInfo_Click(object sender, EventArgs e)
         {
 
             if (txtFullName.Text != "" && txtAge.Text != "" && txtAddress.Text != "" && txtPhoneNumber.Text != "" && cbGender.Text != "") 
             {
 
-                if (balAccount.UpdateInfoAccount(info.AccID, txtFullName.Text, txtAddress.Text, Convert.ToInt32(txtAge.Text), cbGender.Text, txtPhoneNumber.Text))
+                if (checkNumber(txtAge.Text))
                 {
-                    MessageBox.Show("Cập nhật thành công");
-                    InfoUser.statusClose = 2;
+                    if (checkNumber(txtPhoneNumber.Text))
+                    {
+                        if (balAccount.UpdateInfoAccount(info.AccID, txtFullName.Text, txtAddress.Text, Convert.ToInt32(txtAge.Text), cbGender.Text, txtPhoneNumber.Text))
+                        {
+                            MessageBox.Show("Cập nhật thành công");
+                            InfoUser.statusClose = 2;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thất bại");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("sdt chỉ được nhập số");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật thất bại");
+                    MessageBox.Show("tuổi chỉ được nhập số");
                 }
 
             }

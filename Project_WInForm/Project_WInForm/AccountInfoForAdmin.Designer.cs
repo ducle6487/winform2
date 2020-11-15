@@ -31,6 +31,8 @@
             this.pnlRight = new System.Windows.Forms.Panel();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
             this.pnlInfo = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.txtGender = new System.Windows.Forms.TextBox();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -42,8 +44,13 @@
             this.lbAge = new System.Windows.Forms.Label();
             this.lbFullName = new System.Windows.Forms.Label();
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cbxFilter = new System.Windows.Forms.ComboBox();
+            this.txtDataFilter = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btFilter = new System.Windows.Forms.Button();
+            this.btShowAll = new System.Windows.Forms.Button();
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
             this.pnlInfo.SuspendLayout();
@@ -56,22 +63,30 @@
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlRight.Location = new System.Drawing.Point(546, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(931, 801);
+            this.pnlRight.Size = new System.Drawing.Size(931, 900);
             this.pnlRight.TabIndex = 1;
             // 
             // dgvAccount
             // 
             this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAccount.Location = new System.Drawing.Point(4, 0);
+            this.dgvAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAccount.Location = new System.Drawing.Point(0, 0);
             this.dgvAccount.Name = "dgvAccount";
             this.dgvAccount.RowHeadersWidth = 62;
             this.dgvAccount.RowTemplate.Height = 28;
-            this.dgvAccount.Size = new System.Drawing.Size(927, 798);
+            this.dgvAccount.Size = new System.Drawing.Size(931, 900);
             this.dgvAccount.TabIndex = 0;
             this.dgvAccount.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccount_CellClick);
             // 
             // pnlInfo
             // 
+            this.pnlInfo.Controls.Add(this.btShowAll);
+            this.pnlInfo.Controls.Add(this.btFilter);
+            this.pnlInfo.Controls.Add(this.label4);
+            this.pnlInfo.Controls.Add(this.label3);
+            this.pnlInfo.Controls.Add(this.label2);
+            this.pnlInfo.Controls.Add(this.txtDataFilter);
+            this.pnlInfo.Controls.Add(this.cbxFilter);
             this.pnlInfo.Controls.Add(this.label1);
             this.pnlInfo.Controls.Add(this.txtID);
             this.pnlInfo.Controls.Add(this.txtGender);
@@ -84,10 +99,30 @@
             this.pnlInfo.Controls.Add(this.lbGender);
             this.pnlInfo.Controls.Add(this.lbAge);
             this.pnlInfo.Controls.Add(this.lbFullName);
-            this.pnlInfo.Location = new System.Drawing.Point(30, 90);
+            this.pnlInfo.Location = new System.Drawing.Point(30, 12);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(466, 577);
+            this.pnlInfo.Size = new System.Drawing.Size(466, 885);
             this.pnlInfo.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 56);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "ID";
+            // 
+            // txtID
+            // 
+            this.txtID.BackColor = System.Drawing.Color.White;
+            this.txtID.Enabled = false;
+            this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(188, 53);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(275, 30);
+            this.txtID.TabIndex = 91;
             // 
             // txtGender
             // 
@@ -218,38 +253,87 @@
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(540, 801);
+            this.pnlLeft.Size = new System.Drawing.Size(540, 900);
             this.pnlLeft.TabIndex = 0;
             // 
-            // txtID
+            // cbxFilter
             // 
-            this.txtID.BackColor = System.Drawing.Color.White;
-            this.txtID.Enabled = false;
-            this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(188, 53);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(275, 30);
-            this.txtID.TabIndex = 91;
+            this.cbxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxFilter.FormattingEnabled = true;
+            this.cbxFilter.Location = new System.Drawing.Point(188, 686);
+            this.cbxFilter.Name = "cbxFilter";
+            this.cbxFilter.Size = new System.Drawing.Size(251, 33);
+            this.cbxFilter.TabIndex = 92;
             // 
-            // label1
+            // txtDataFilter
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 56);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ID";
+            this.txtDataFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataFilter.Location = new System.Drawing.Point(188, 622);
+            this.txtDataFilter.Name = "txtDataFilter";
+            this.txtDataFilter.Size = new System.Drawing.Size(251, 30);
+            this.txtDataFilter.TabIndex = 93;
             // 
-            // Account
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(22, 625);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 25);
+            this.label2.TabIndex = 94;
+            this.label2.Text = "Dữ liệu lọc";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(22, 689);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 25);
+            this.label3.TabIndex = 94;
+            this.label3.Text = "Lọc theo";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(158, 540);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(130, 29);
+            this.label4.TabIndex = 95;
+            this.label4.Text = "Lọc dữ liệu";
+            // 
+            // btFilter
+            // 
+            this.btFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFilter.Location = new System.Drawing.Point(62, 785);
+            this.btFilter.Name = "btFilter";
+            this.btFilter.Size = new System.Drawing.Size(136, 64);
+            this.btFilter.TabIndex = 96;
+            this.btFilter.Text = "Lọc";
+            this.btFilter.UseVisualStyleBackColor = true;
+            this.btFilter.Click += new System.EventHandler(this.btFilter_Click);
+            // 
+            // btShowAll
+            // 
+            this.btShowAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btShowAll.Location = new System.Drawing.Point(271, 785);
+            this.btShowAll.Name = "btShowAll";
+            this.btShowAll.Size = new System.Drawing.Size(136, 64);
+            this.btShowAll.TabIndex = 96;
+            this.btShowAll.Text = "Hiện tất cả";
+            this.btShowAll.UseVisualStyleBackColor = true;
+            this.btShowAll.Click += new System.EventHandler(this.btShowAll_Click);
+            // 
+            // AccountInfoForAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1477, 801);
+            this.ClientSize = new System.Drawing.Size(1477, 900);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.pnlLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Account";
+            this.Name = "AccountInfoForAdmin";
             this.Text = "Account";
             this.Load += new System.EventHandler(this.Account_Load);
             this.Resize += new System.EventHandler(this.Account_Resize_1);
@@ -280,5 +364,12 @@
         private System.Windows.Forms.TextBox txtGender;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.ComboBox cbxFilter;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtDataFilter;
+        private System.Windows.Forms.Button btShowAll;
+        private System.Windows.Forms.Button btFilter;
     }
 }

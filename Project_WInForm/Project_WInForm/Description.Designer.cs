@@ -40,10 +40,8 @@
             this.btTiepTucMuaSam = new System.Windows.Forms.Button();
             this.btCongSL = new System.Windows.Forms.Button();
             this.btTruSL = new System.Windows.Forms.Button();
-            this.btSizeXL = new System.Windows.Forms.Button();
-            this.btSizeL = new System.Windows.Forms.Button();
-            this.btSizeM = new System.Windows.Forms.Button();
             this.btThemVaoGio = new System.Windows.Forms.Button();
+            this.fpnlSize = new System.Windows.Forms.FlowLayoutPanel();
             this.pnMain.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage2)).BeginInit();
@@ -119,14 +117,12 @@
             // 
             // pnDescription
             // 
+            this.pnDescription.Controls.Add(this.fpnlSize);
             this.pnDescription.Controls.Add(this.lbSoLuong);
             this.pnDescription.Controls.Add(this.lbGia);
             this.pnDescription.Controls.Add(this.btTiepTucMuaSam);
             this.pnDescription.Controls.Add(this.btCongSL);
             this.pnDescription.Controls.Add(this.btTruSL);
-            this.pnDescription.Controls.Add(this.btSizeXL);
-            this.pnDescription.Controls.Add(this.btSizeL);
-            this.pnDescription.Controls.Add(this.btSizeM);
             this.pnDescription.Controls.Add(this.btThemVaoGio);
             this.pnDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.pnDescription.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -199,54 +195,6 @@
             this.btTruSL.UseVisualStyleBackColor = true;
             this.btTruSL.Click += new System.EventHandler(this.btTruSL_Click);
             // 
-            // btSizeXL
-            // 
-            this.btSizeXL.BackColor = System.Drawing.Color.Black;
-            this.btSizeXL.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btSizeXL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSizeXL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSizeXL.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btSizeXL.Location = new System.Drawing.Point(225, 11);
-            this.btSizeXL.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btSizeXL.Name = "btSizeXL";
-            this.btSizeXL.Size = new System.Drawing.Size(51, 46);
-            this.btSizeXL.TabIndex = 4;
-            this.btSizeXL.Text = "XL";
-            this.btSizeXL.UseVisualStyleBackColor = false;
-            this.btSizeXL.Click += new System.EventHandler(this.btsizeXL_Click);
-            // 
-            // btSizeL
-            // 
-            this.btSizeL.BackColor = System.Drawing.Color.Black;
-            this.btSizeL.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btSizeL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSizeL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSizeL.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btSizeL.Location = new System.Drawing.Point(132, 11);
-            this.btSizeL.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btSizeL.Name = "btSizeL";
-            this.btSizeL.Size = new System.Drawing.Size(51, 46);
-            this.btSizeL.TabIndex = 3;
-            this.btSizeL.Text = "L";
-            this.btSizeL.UseVisualStyleBackColor = false;
-            this.btSizeL.Click += new System.EventHandler(this.btsizeL_Click);
-            // 
-            // btSizeM
-            // 
-            this.btSizeM.BackColor = System.Drawing.Color.Black;
-            this.btSizeM.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btSizeM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSizeM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSizeM.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btSizeM.Location = new System.Drawing.Point(42, 11);
-            this.btSizeM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btSizeM.Name = "btSizeM";
-            this.btSizeM.Size = new System.Drawing.Size(51, 46);
-            this.btSizeM.TabIndex = 2;
-            this.btSizeM.Text = "M";
-            this.btSizeM.UseVisualStyleBackColor = false;
-            this.btSizeM.Click += new System.EventHandler(this.btsizeM_Click);
-            // 
             // btThemVaoGio
             // 
             this.btThemVaoGio.BackColor = System.Drawing.Color.Black;
@@ -262,6 +210,13 @@
             this.btThemVaoGio.Text = "THÊM VÀO GIỎ HÀNG";
             this.btThemVaoGio.UseVisualStyleBackColor = false;
             this.btThemVaoGio.Click += new System.EventHandler(this.btThemVaoGio_Click);
+            // 
+            // fpnlSize
+            // 
+            this.fpnlSize.Location = new System.Drawing.Point(13, 12);
+            this.fpnlSize.Name = "fpnlSize";
+            this.fpnlSize.Size = new System.Drawing.Size(274, 215);
+            this.fpnlSize.TabIndex = 11;
             // 
             // Description
             // 
@@ -290,9 +245,6 @@
         private System.Windows.Forms.Panel pnMain;
         private System.Windows.Forms.Panel pnDescription;
         private System.Windows.Forms.Panel pnBigImage;
-        private System.Windows.Forms.Button btSizeXL;
-        private System.Windows.Forms.Button btSizeL;
-        private System.Windows.Forms.Button btSizeM;
         private System.Windows.Forms.Button btThemVaoGio;
         private System.Windows.Forms.Button btCongSL;
         private System.Windows.Forms.Button btTruSL;
@@ -303,5 +255,6 @@
         private System.Windows.Forms.Label lbGia;
         private System.Windows.Forms.Button btTiepTucMuaSam;
         private System.Windows.Forms.Panel pnlLeft;
+        private System.Windows.Forms.FlowLayoutPanel fpnlSize;
     }
 }

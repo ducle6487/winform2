@@ -47,7 +47,7 @@ namespace Project_WInForm
             
         }
 
-        
+
         private bool textboxIsFilled()
         {
             if (txtFullName.Text!=""&&txtAddress.Text!=""&&txtAge.Text != ""&&txtPassword.Text!=""&&txtPhoneNumber.Text!=""&&txtUser.Text!=""&&cbGender.Text!="")

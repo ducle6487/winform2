@@ -8,6 +8,7 @@ using System.Text;
 using DTO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BAL;
 
 namespace Project_WInForm
 {
@@ -19,7 +20,11 @@ namespace Project_WInForm
 
         ProductDTO product = new ProductDTO();
 
+        SizeInfoBAL sizeBAL = new SizeInfoBAL();
+
         bool isExistInList = false;
+
+        List<Button> listBtnSize = new List<Button>();
 
         MainPage parent { get; set; }
 
@@ -53,32 +58,34 @@ namespace Project_WInForm
             btTruSL.Enabled = false;
 
             //lb1.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height *0.17)),pnDescription.Height/18);
-            DescriptionResize();
-            pnDescriptionResize();
-            pnMainResize();
-            pnBigImageResize();
-            ClickSizeM();
+            SetupUIForm();
+            setupUIPnlMain();
+            setupUIPnlBigImg();
+            setupUIPnlLeft();
             donhang.Soluong = Convert.ToInt32(lbSoLuong.Text);
             GiaChange(donhang.Soluong.ToString());
+
+            listBtnSize[0].BackColor = Color.Blue;
+            donhang.Size = listBtnSize[0].Tag.ToString();
         }
 
-        private void btsizeXL_Click(object sender, EventArgs e)
+
+        private void btsize_Click(object sender, EventArgs e)
         {
-            ClickSizeXL();// Hàm Thay Đổi màu chữ,nền Khi Click Vào btSizeXL
+
+            Button btn = sender as Button;
+
+            foreach(Button item in listBtnSize)
+            {
+                item.BackColor = Color.Black;
+                item.ForeColor = Color.White;
+            }
+
+            btn.BackColor = Color.Blue;
+            donhang.Size = btn.Tag.ToString();
             
         }
 
-        private void btsizeL_Click(object sender, EventArgs e)
-        {
-            ClickSizeL();// Hàm Thay Đổi màu chữ,nền Khi Click Vào btSizeL
-            
-        }
-
-        private void btsizeM_Click(object sender, EventArgs e)
-        {
-            ClickSizeM(); // Hàm Thay Đổi màu chữ,nền Khi Click Vào btSizeM
-            
-        }
 
         private void btThemVaoGio_Click(object sender, EventArgs e)
         {
@@ -183,39 +190,7 @@ namespace Project_WInForm
         {
             lbSoLuong.Text = sl; // gán giá trị mới cho lbSoLuong
         }
-        // hàm thay đổi màu cho btSizeM khi xảy ra hiện tượng Click chuột vào button
-        private void ClickSizeM()
-        {
-            btSizeM.ForeColor = Color.Aqua;// thay đổi màu chữ cho btSizeM
-            btSizeM.BackColor = Color.Blue;// thay đổi nền cho btSizeM
-            btSizeL.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeL khi hiện tượng click btSizeM xảy ra
-            btSizeL.BackColor = Color.Black;// gán màu nền cho btSizeL khi hiện tượng click btSizeM xảy ra
-            btSizeXL.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeXL khi hiện tượng click btSizeM xảy ra
-            btSizeXL.BackColor = Color.Black;// gán màu nền cho btSizeXL khi hiện tượng click btSizeM xãy ra
-            donhang.Size = "M";
-        }
-        // hàm thay đổi màu cho btSizeL khi xảy ra hiện tượng Click chuột vào button
-        private void ClickSizeL()
-        {
-            donhang.Size = "L";
-            btSizeL.ForeColor = Color.Aqua;// thay đổi màu chữ cho btSizeL
-            btSizeL.BackColor = Color.Blue;// thay đổi nền cho btSizeL
-            btSizeXL.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeXL khi hiện tượng click btSizeL xảy ra
-            btSizeXL.BackColor = Color.Black;// gán màu nền cho btSizeXL khi hiện tượng click btSizeL xãy ra
-            btSizeM.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeM khi hiện tượng click btSizeL xảy ra
-            btSizeM.BackColor = Color.Black;// gán màu nền cho btSizeM khi hiện tượng click btSizeL xãy ra
-        }
-        // hàm thay đổi màu cho btSizeXL khi xảy ra hiện tượng Click chuột vào button
-        private void ClickSizeXL()
-        {
-            btSizeXL.ForeColor = Color.Aqua;// thay đổi màu chữ cho btSizeXL
-            btSizeXL.BackColor = Color.Blue; // thay đổi nền cho btSizeXL
-            btSizeL.ForeColor = SystemColors.ButtonHighlight; // Gán màu chữ cho btSizeL khi hiện tượng click btSizeXL xảy ra
-            btSizeL.BackColor = Color.Black; // gán màu nền cho btSizeL khi hiện tượng click btSizeXL xãy ra
-            btSizeM.ForeColor = SystemColors.ButtonHighlight;// Gán màu chữ cho btSizeM khi hiện tượng click btSizeXL xảy ra
-            btSizeM.BackColor = Color.Black; // gán màu nền cho btSizeM khi hiện tượng click btSizeXL xãy ra
-            donhang.Size = "XL";
-        }
+       
         //Hàm khi Tăng số lượng hay giảm số lượng thì giá sẽ giảm hoặc tăng theo
         private void GiaChange(string sl)
         {
@@ -225,7 +200,7 @@ namespace Project_WInForm
         }
 
         
-        private void DescriptionResize()
+        private void SetupUIForm()
         {
             pnDescription.Width = this.Width;
             pnDescription.Height = Convert.ToInt32(this.Height * 0.3);
@@ -233,38 +208,24 @@ namespace Project_WInForm
             pnMain.Width = this.Width;
             pnMain.Height = Convert.ToInt32(this.Height * 0.65);
             pnMain.Location = new Point(0, 0);
+
+            List<string> size = sizeBAL.getSize();
+            for(int i = 0; i < size.Count; i++)
+            {
+                Button btn = new Button();
+                btn.Tag = size[i];
+                btn.Text = size[i];
+                btn.Width = btn.Height = Convert.ToInt32(fpnlSize.Width / 4);
+                listBtnSize.Add(btn);
+                btn.Click += btsize_Click;
+                btn.BackColor = Color.Black;
+                btn.ForeColor = Color.White;
+                fpnlSize.Controls.Add(btn);
+            }
+
         }
-        private void pnDescriptionResize()
-        {
-             btSizeM.Width = Convert.ToInt32(pnDescription.Width /20);
-             btSizeM.Height = Convert.ToInt32(pnDescription.Height / 6);
-             btSizeL.Width = Convert.ToInt32(pnDescription.Width / 20);
-             btSizeL.Height = Convert.ToInt32(pnDescription.Height / 6);
-             btSizeXL.Width = Convert.ToInt32(pnDescription.Width / 20);
-             btSizeXL.Height = Convert.ToInt32(pnDescription.Height / 6);
-             lbGia.Width = Convert.ToInt32(pnDescription.Width / 2.3);
-            lbGia.Height = Convert.ToInt32(pnDescription.Height / 6);
-            btCongSL.Width = Convert.ToInt32(pnDescription.Width / 19.5);
-            btCongSL.Height = Convert.ToInt32(pnDescription.Height / 6); ;
-            btTruSL.Width = Convert.ToInt32(pnDescription.Width / 19.5);
-            btTruSL.Height = Convert.ToInt32(pnDescription.Height / 6); ;
-            lbSoLuong.Width = Convert.ToInt32(pnDescription.Width / 19.5);
-            lbSoLuong.Height = Convert.ToInt32(pnDescription.Height / 6.8); ;
-            btThemVaoGio.Width = Convert.ToInt32(pnDescription.Width/2);
-            btThemVaoGio.Height = Convert.ToInt32(pnDescription.Height/4);
-            btTiepTucMuaSam.Width = Convert.ToInt32(pnDescription.Width / 3);
-            btTiepTucMuaSam.Height = Convert.ToInt32(pnDescription.Height / 4);
-            btSizeM.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height *0.17)),pnDescription.Height/18);
-            btSizeL.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height * 0.2)+btSizeM.Width), pnDescription.Height / 18);
-            btSizeXL.Location =new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height * 0.23)+btSizeM.Width+btSizeL.Width), pnDescription.Height / 18);
-            lbGia.Location =new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height * 0.25)+btSizeM.Width+btSizeXL.Width+btSizeL.Width ), pnDescription.Height / 18);
-            lbSoLuong.Location =new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height * 0.41)+btSizeM.Width+btSizeXL.Width+btSizeL.Width+ lbGia.Width + btTruSL.Width-2), pnDescription.Height / 18);
-            btTruSL.Location =new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height * 0.4)+btSizeM.Width+btSizeXL.Width+btSizeL.Width+lbGia.Width), pnDescription.Height / 18);
-            btCongSL.Location =new Point(Convert.ToInt32(pnDescription.Location.X + (pnDescription.Height * 0.39)+btSizeM.Width+btSizeXL.Width+btSizeL.Width+ lbGia.Width+btTruSL.Width+lbSoLuong.Width), pnDescription.Height / 18);
-            btThemVaoGio.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (btThemVaoGio.Width * 0.45)), pnDescription.Height / 3);
-            btTiepTucMuaSam.Location = new Point(Convert.ToInt32(pnDescription.Location.X + (btTiepTucMuaSam.Width * 0.9)), Convert.ToInt32(pnDescription.Height * 0.68));
-        }
-        private void pnMainResize()
+        
+        private void setupUIPnlMain()
         {
             pnBigImage.Width = Convert.ToInt32(pnMain.Width * 0.8);
             pnBigImage.Height = pnMain.Height;
@@ -272,7 +233,7 @@ namespace Project_WInForm
             
         }
         
-        private void pnlLeftResize()
+        private void setupUIPnlLeft()
         {
 
             pnlLeft.Height = pnBigImage.Height;
@@ -286,7 +247,7 @@ namespace Project_WInForm
 
 
         }
-        private void pnBigImageResize()
+        private void setupUIPnlBigImg()
         {
             //pbxBigImage thêm dữ liệu vào
             pbxBigImage.Width = Convert.ToInt32(pnBigImage.Width * 0.8);
