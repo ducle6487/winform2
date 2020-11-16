@@ -12,6 +12,7 @@ namespace BAL
 
         SizeDAL dal = new SizeDAL();
 
+        //hàm lấy tất cả thông tin sỉze
         public List<string> getSize()
         {
             return dal.getSize();

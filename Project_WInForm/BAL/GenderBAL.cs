@@ -13,6 +13,7 @@ namespace BAL
 
         GenderDAL dal = new GenderDAL();
 
+        //hàm lấy thông tin giới tính
         public List<GenderDTO> GetInfoGender()
         {
             return dal.GetInfoGender();

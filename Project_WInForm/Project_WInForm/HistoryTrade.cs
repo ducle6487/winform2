@@ -47,24 +47,27 @@ namespace Project_WInForm
         {
             list = bal.GetInfoPaymentFromAccID(Accid);
             dgvHistory.DataSource = list;
-
-            DateTime min = list[0].NgayDat;
-            DateTime max = list[0].NgayDat;
-
-            foreach (PaymentHistoryDTO item in list)
+            if(list.Count > 0)
             {
-                if(item.NgayDat < min)
-                {
-                    min = item.NgayDat;
-                }
-                if(item.NgayDat > max)
-                {
-                    max = item.NgayDat;
-                }
-            }
 
-            dtpFrom.Value = min;
-            dtpTo.Value = max;
+                DateTime min = list[0].NgayDat;
+                DateTime max = list[0].NgayDat;
+
+                foreach (PaymentHistoryDTO item in list)
+                {
+                    if (item.NgayDat < min)
+                    {
+                        min = item.NgayDat;
+                    }
+                    if (item.NgayDat > max)
+                    {
+                        max = item.NgayDat;
+                    }
+                }
+
+                dtpFrom.Value = min;
+                dtpTo.Value = max;
+            }
         }
 
         private void HistoryTrade_Resize(object sender, EventArgs e)

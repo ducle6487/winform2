@@ -13,6 +13,7 @@ namespace BAL
 
         SaleHistoryDAL dal = new SaleHistoryDAL();
 
+        //hàm lấy lịch sử tất cả giao dịch 
         public List<SaleHistoryDTO> GetSaleHistories()
         {
             return dal.GetSaleHistories();

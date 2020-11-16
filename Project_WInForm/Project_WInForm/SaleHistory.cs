@@ -58,23 +58,26 @@ namespace Project_WInForm
             list = bal.GetSaleHistories();
             dgvSaleHistory.DataSource = list;
 
-            DateTime min = list[0].NgayDat;
-            DateTime max = list[0].NgayDat;
-
-            foreach (SaleHistoryDTO item in list)
+            if(list.Count < 0)
             {
-                if (item.NgayDat < min)
-                {
-                    min = item.NgayDat;
-                }
-                if (item.NgayDat > max)
-                {
-                    max = item.NgayDat;
-                }
-            }
+                DateTime min = list[0].NgayDat;
+                DateTime max = list[0].NgayDat;
 
-            dtpFrom.Value = min;
-            dtpTo.Value = max;
+                foreach (SaleHistoryDTO item in list)
+                {
+                    if (item.NgayDat < min)
+                    {
+                        min = item.NgayDat;
+                    }
+                    if (item.NgayDat > max)
+                    {
+                        max = item.NgayDat;
+                    }
+                }
+
+                dtpFrom.Value = min;
+                dtpTo.Value = max;
+            }
         }
 
         private void btShowAll_Click(object sender, EventArgs e)
