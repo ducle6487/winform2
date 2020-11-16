@@ -46,7 +46,7 @@ namespace BAL
         }
 
 
-        //hàm lấy thông tin tất cả tài khoản
+        //hàm lấy thông tin tất cả tài khoản user
         public List<InfoAccDTO> GetInfoAccs()
         {
             return dal.GetInfoAccs();

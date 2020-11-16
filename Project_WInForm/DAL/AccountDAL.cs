@@ -315,7 +315,7 @@ namespace DAL
 
             try
             {
-                string sql = "select * from AccInfo";
+                string sql = "select b.* from Account a, AccInfo b where a.AccID = b.AccID and a.Acctype = 2";
                 SqlDataReader reader = ReadData(sql);
                 while (reader.Read())
                 {
