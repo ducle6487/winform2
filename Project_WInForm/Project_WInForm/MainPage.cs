@@ -53,24 +53,25 @@ namespace Project_WInForm
 
         List<ProductDTO> ProductList = new List<ProductDTO>();
 
+        // Hàm Resize Form MainPage
         private void MainPage_Resize(object sender, EventArgs e)
         {
 
-            resize();
+            resize(); // gọi hàm resize
 
 
         }
 
-
+        // Load lại số lượng trong lb Giỏ hàng
         public void reloadSoluong()
         {
             giohang = "Giỏ Hàng: " + ListGioHang.Count;
             lbGioHang.Text = giohang;
         }
-
+        //Load lại thông tin của khách hàng
         public void reloadInfoUser()
         {
-            infoUser = bal.GetInfoFromUsername(userName);
+            infoUser = bal.GetInfoFromUsername(userName); // gán dữ liệu của Hàm GetInfoFromUserName vào InfoUser
             lbInfo.Text = "Tên KH: " + infoUser.TenKH;//nhớ thay như vậy trong setupUI
             
             //nhớ gọi hàm này trong formload
@@ -275,7 +276,7 @@ namespace Project_WInForm
             lbGioHang.Width = Convert.ToInt32(pnlToolRight.Width * 0.7);
             lbGioHang.Location = new Point(ptbGioHang.Width, ptbGioHang.Location.Y);
         }
-
+        //hàm resize cac component trong panel trai
         private void resizeToolLeft()
         {
             btInfo.Height = Convert.ToInt32(pnlToolLeft.Height / 3);
@@ -296,7 +297,7 @@ namespace Project_WInForm
             info.Show();
             
         }
-
+        //Hàm đóng form MainPage
         private void MainPage_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -304,10 +305,14 @@ namespace Project_WInForm
             DialogResult result = MessageBox.Show("Bạn có muốn tắt chứ ?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
             {
+                //Nếu như khách hàng bấm no 
+                //thì từ chối việc tắt form MainPage
                 e.Cancel = true;
             }
             else
             {
+                //Ngược Lại
+                //Thoát ra khỏi form MainPage
                 System.Environment.Exit(1);
             }
 

@@ -253,11 +253,14 @@ namespace Project_WInForm
                 }
                 else
                 {
+                    //Ngược Lại
+                    //Thông Báo cho người dùng
                     MessageBox.Show("chọn loại muốn lọc");
                 }
             }
             else
             {
+                //Ngược Lại Thông Báo cho người dùng
                 MessageBox.Show("nhập dữ liệu lọc");
             }
            

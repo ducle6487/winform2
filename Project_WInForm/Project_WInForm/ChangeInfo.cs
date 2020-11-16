@@ -85,17 +85,23 @@ namespace Project_WInForm
                     }
                     else
                     {
+                        //Ngược Lại
+                        //Thông báo cho khách hàng
                         MessageBox.Show("sdt chỉ được nhập số");
                     }
                 }
                 else
                 {
+                    //Ngược Lại
+                    //Thông báo cho khách hàng
                     MessageBox.Show("tuổi chỉ được nhập số");
                 }
 
             }
             else
             {
+                //Ngược LẠi
+                //Thông Báo cho khách hàng
                 MessageBox.Show("Hãy điền đủ thông tin");
             }
 
@@ -129,6 +135,8 @@ namespace Project_WInForm
             }
             else
             {
+                //Ngược Lại
+                //Thông báo cho khách hàng
                 MessageBox.Show("Hãy điền đủ thông tin");
             }
 
@@ -167,10 +175,10 @@ namespace Project_WInForm
             pnlPass.Height = this.Height;
             pnlPass.Width = Convert.ToInt32(this.Width / 2);
         }
-
+        //Hàm Resize form
         private void ChangeInfo_Resize(object sender, EventArgs e)
         {
-            resizeForm();
+            resizeForm(); // Gọi Hàm Resize Form
         }
 
 

@@ -27,30 +27,30 @@ namespace Project_WInForm
             this.info = info;
             
         }
-
+        //Tạo biến showForm của form MainPage 
         public MainPage showForm { get; set; }
-
+        //tạo biến History của class HistoryTrade
         HistoryTrade history;
-
+        //Khởi tạo biến info của class InfoAccDTO
         InfoAccDTO info = new InfoAccDTO();
-
+        //Khởi tạo biến changeInfo của form ChangeInfo
         ChangeInfo changeInfo = new ChangeInfo();
-
+        //Hàm btChangInfo_Click
         private void btChangeInfo_Click(object sender, EventArgs e)
         {
 
-            CallToChildForm(changeInfo);
+            CallToChildForm(changeInfo); // gọi Form ChangeInfo truyền vào panel
             selectColor(btChangeInfo, btHistory);
         }
-
+        //Hàm btHistory_Click
         private void btHistory_Click(object sender, EventArgs e)
         {
-            CallToChildForm(history);
+            CallToChildForm(history); // gọi form History truyền vào panel
             
             selectColor(btHistory, btChangeInfo);
         }
 
-
+        //Hàm Chọn Màu
         private void selectColor(Button select , Button deselect)
         {
 
@@ -58,7 +58,7 @@ namespace Project_WInForm
             deselect.BackColor = Color.Gray;
 
         }
-
+        //Hàm gọi Form và chuyền vào panel Main
         private void CallToChildForm(object form)
         {
 
@@ -75,7 +75,7 @@ namespace Project_WInForm
 
 
         }
-
+        //Hàm Load  form InfoUser
         private void InfoUser_Load(object sender, EventArgs e)
         {
             history = new HistoryTrade(info.AccID);
@@ -83,7 +83,7 @@ namespace Project_WInForm
             changeInfo.InfoUser = this;
             changeInfo.info = info;
             changeInfo.loadTextbox();
-            CallToChildForm(changeInfo);
+            CallToChildForm(changeInfo); // truyền form changeInfo vào panel
             selectColor(btChangeInfo, btHistory);
 
             resizeForm();
@@ -92,7 +92,7 @@ namespace Project_WInForm
         }
 
         
-
+        //Hàm resize form
         private void resizeForm()
         {
             pnlToolbox.Width = this.Width;
@@ -101,9 +101,12 @@ namespace Project_WInForm
             pnlMain.Height = this.Height-pnlToolbox.Height;
             
         }
-
+        //Hàm Resize toolbox
         private void resizeToolBox()
         {
+            //chiều cao của btChangeInfo = chiều cao pnlToolBox bằng chiều cao btHistory
+            //Chiều rộng btChangeInfo=btHistory = pntoolbox.width/2
+            //Chữ nằm ở giữa
             btChangeInfo.Height = pnlToolbox.Height;
             btHistory.Height = btChangeInfo.Height;
             btChangeInfo.TextAlign = ContentAlignment.MiddleCenter;
@@ -111,22 +114,22 @@ namespace Project_WInForm
             btHistory.Width = btChangeInfo.Width;
             btHistory.TextAlign = ContentAlignment.MiddleCenter;
         }
-
+        //Hàm Resize form InfoUser
         private void InfoUser_Resize(object sender, EventArgs e)
         {
             resizeForm();
         }
-
+        //Hàm Resize pnlTool
         private void pnlToolbox_Resize(object sender, EventArgs e)
         {
-            resizeToolBox();
+            resizeToolBox();// gọi hàm resize
         }
-
+        //Hàm đóng Form
         private void InfoUser_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (statusClose == 2)
             {
-                showForm.reloadInfoUser();
+                showForm.reloadInfoUser(); // load lại reloadInfoUser
             }
             showForm.Show();
             

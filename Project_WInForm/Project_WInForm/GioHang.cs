@@ -19,15 +19,15 @@ namespace Project_WInForm
         {
             InitializeComponent();
         }
-
+        //Khởi tạo biến paymentBal của class PaymentBal
         PaymentBAL paymentBAL = new PaymentBAL();
-
+        //Khởi tạo biến productBAL của class ProductBAL
         ProductBAL productBAL = new ProductBAL();
-
+        //Khởi tạo biến ds listProduct của class ProductDTO
         List<ProductDTO> listProduct = new List<ProductDTO>();
-
+        //Khởi tạo biến ds listProductID của  chuỗi
         List<string> listProductID = new List<string>();
-
+        //Khởi tạo biến ds  listofPanelInFpnl của label
         List<Label> listOfPanelInFpnl = new List<Label>();
 
         public GioHang(MainPage parent)
@@ -40,39 +40,43 @@ namespace Project_WInForm
         List<GioHangDTO> listGioHangTemp = new List<GioHangDTO>();
 
 
-
+        //list label số lượng
         List<Label> listLabelSoLuong = new List<Label>();
-
+        //list lbgia
         List<Label> listLabelPrice = new List<Label>();
-
+        //tạo 1 class của form MainPage
         MainPage parent {get;set;}
 
-
+        //Hàm load form Giỏ hàng
         private void GioHang_Load(object sender, EventArgs e)
         {
             
-            resizeForm();
-            setupUIFlowlayoutPanel();
-            listGioHangTemp = parent.ListGioHang;
-            reloadTotalPrice();
-            listProduct = productBAL.GetDataProduct();
-            enablePay();
+            resizeForm(); // resizeForm
+            setupUIFlowlayoutPanel(); //Đổ dữ liệu vào FlowlayoutPanel
+            listGioHangTemp = parent.ListGioHang; // gán giá trị của Listgiohangtemp bằng giá trị ListGiohang trong MainPage
+            reloadTotalPrice(); // load lại tổng giá
+            listProduct = productBAL.GetDataProduct(); // gán dữ liệu từ GetDataProduct vào ListProduct
+            enablePay(); // cho biến button hiện 
             
         }
-
+        // Hàm Ẩn Hiện Button Thanh Toán
         private void enablePay()
         {
             if (parent.ListGioHang.Count <= 0)
             {
+                //Nếu Số Lượng trong ListGioHang của Form MainPage <= 0 thì button thanh toan ẩn
                 btPay.Enabled = false;
             }
             else
             {
+                //Ngược Lại
+                // Cho hiện button thanh toán 
+                //để cho khách hàng bấm khi muốn thanh toán
                 btPay.Enabled = true;
             }
         }
 
-
+        //Hàm thay đổi tag của label
         private void reChangeLableTag(Label lb)
         {
             listOfPanelInFpnl.RemoveAt(Convert.ToInt32(lb.Tag.ToString()));
@@ -81,22 +85,23 @@ namespace Project_WInForm
                 listOfPanelInFpnl[i].Tag = i.ToString();
             }
         }
-
+        //Hàm khởi tạo dữ liệu truyền vào flowlayoutpanel
         private void setupUIFlowlayoutPanel()
         {
 
             
             for(int i = 0; i < parent.ListGioHang.Count; i++)
             {
-
+                //Khởi tạo panel
                 Panel pnlCover = new Panel();
-
+                //cho độ rộng bằng độ rộng form,chiều cao bằng flowlayoutpanelSanPham / 4.25
+                //Màu nền màu trắng
                 pnlCover.Height = Convert.ToInt32(fpnlSanPham.Height / 4.25);
                 pnlCover.Width = this.Width;
                 pnlCover.BackColor = Color.White;
-
+                //Tạo picturebox
                 PictureBox ptbImage = new PictureBox();
-                pnlCover.Controls.Add(ptbImage);
+                pnlCover.Controls.Add(ptbImage);// thêm vào panel
                 ptbImage.LoadAsync(parent.ListGioHang[i].ImgLink);
                 ptbImage.SizeMode = PictureBoxSizeMode.Zoom;
                 pnlCover.BackColor = Color.White;
@@ -104,9 +109,9 @@ namespace Project_WInForm
                 ptbImage.Width = Convert.ToInt32(pnlCover.Width * 0.2);
                 ptbImage.Location = new Point(0, 0);
 
-
+                //tạo lb tên sản phẩm
                 Label lbName = new Label();
-                pnlCover.Controls.Add(lbName);
+                pnlCover.Controls.Add(lbName);// thêm vào panel
                 lbName.Text = parent.ListGioHang[i].ProductName;
                 lbName.ForeColor = Color.Black;
                 //lbName.MaximumSize = new System.Drawing.Size(Convert.ToInt32(this.Width * 0.4), lbName.Height);
@@ -116,7 +121,7 @@ namespace Project_WInForm
                 lbName.Font = new Font("Arial", 16, FontStyle.Regular);
 
                 Label lbDelete = new Label();
-                pnlCover.Controls.Add(lbDelete);
+                pnlCover.Controls.Add(lbDelete);// thêm vào panel
                 lbDelete.ForeColor = Color.Red;
                 lbDelete.BackColor = Color.White;
                 lbDelete.Font = new Font("Arial", 9, FontStyle.Italic);
@@ -125,11 +130,11 @@ namespace Project_WInForm
                 lbDelete.Location = new Point(lbName.Location.X, Convert.ToInt32(pnlCover.Height / 2) + 15);
                 lbDelete.Text = "Xóa";
                 lbDelete.Tag = i.ToString();
-                lbDelete.Click += XoaSanPham_click;
+                lbDelete.Click += XoaSanPham_click; // tạo hiện tượng click
                 listOfPanelInFpnl.Add(lbDelete);
-
+                //tạo label giá
                 Label lbGia = new Label();
-                pnlCover.Controls.Add(lbGia);
+                pnlCover.Controls.Add(lbGia);// thêm vào panel
                 listLabelPrice.Add(lbGia);
                 lbGia.Text = parent.ListGioHang[i].Size + "  |  " + (Convert.ToDouble(parent.ListGioHang[i].Dongia) * parent.ListGioHang[i].Soluong).ToString();
                 lbGia.Location = new Point(Convert.ToInt32((this.Width * 0.77) - (lbGia.Width / 2)),Convert.ToInt32((pnlCover.Height / 4) - (lbGia.Height / 2)));
@@ -138,10 +143,10 @@ namespace Project_WInForm
                 lbGia.AutoSize = true;
 
 
-
+                //Tạo Label
                 Label lbSoLuong = new Label();
                 listLabelSoLuong.Add(lbSoLuong);
-                pnlCover.Controls.Add(lbSoLuong);
+                pnlCover.Controls.Add(lbSoLuong);// thêm vào panel
                 lbSoLuong.Text = parent.ListGioHang[i].Soluong.ToString();
                 lbSoLuong.Font = new Font("Arial", 11, FontStyle.Bold);
                 lbSoLuong.Location = new Point(Convert.ToInt32(lbGia.Location.X + (lbGia.Width / 2)), Convert.ToInt32((pnlCover.Height * 0.65)));
@@ -151,32 +156,32 @@ namespace Project_WInForm
                 lbSoLuong.TextAlign = ContentAlignment.MiddleCenter;
                 lbSoLuong.BorderStyle = BorderStyle.FixedSingle;
 
-
-                Button btPlus = new Button();
-                pnlCover.Controls.Add(btPlus);
-                btPlus.Width = btPlus.Height = 30;
-                btPlus.Font = new Font("Arial", 13, FontStyle.Bold);
-                btPlus.Text = "+";
-                btPlus.Location = new Point(lbSoLuong.Location.X + lbSoLuong.Width, lbSoLuong.Location.Y-1);
+                //tạo button cộng số lượng
+                Button btPlus = new Button();// khởi tạo button
+                pnlCover.Controls.Add(btPlus); // thêm vào panel
+                btPlus.Width = btPlus.Height = 30;// cho độ rộng bằng độ rộng bt trừ bằng 30
+                btPlus.Font = new Font("Arial", 13, FontStyle.Bold); // kiểu chữ
+                btPlus.Text = "+";//chứa text
+                btPlus.Location = new Point(lbSoLuong.Location.X + lbSoLuong.Width, lbSoLuong.Location.Y-1); // điều chỉnh tọa độ
                 btPlus.Tag = i.ToString();
-                btPlus.Click += PlusSoLuong_click;
-
-                Button btMinus = new Button();
-                pnlCover.Controls.Add(btMinus);
-                btMinus.Width = btMinus.Height = 30;
-                btMinus.Font = new Font("Arial", 13, FontStyle.Bold);
-                btMinus.Text = "-";
-                btMinus.Location = new Point(lbSoLuong.Location.X - btMinus.Width, lbSoLuong.Location.Y-1);
+                btPlus.Click += PlusSoLuong_click; // tạo hiện tượng click
+                //tạo button trừ số lượng
+                Button btMinus = new Button(); // khởi tạo button
+                pnlCover.Controls.Add(btMinus); // thêm vào panel
+                btMinus.Width = btMinus.Height = 30; // cho độ rộng bằng độ rộng bt cộng bằng 30
+                btMinus.Font = new Font("Arial", 13, FontStyle.Bold);// kiểu chữ
+                btMinus.Text = "-"; //chứa text
+                btMinus.Location = new Point(lbSoLuong.Location.X - btMinus.Width, lbSoLuong.Location.Y-1);// điều chỉnh tọa độ
                 btMinus.Tag = i.ToString();
-                btMinus.Click += MinusSoLuong_click;
+                btMinus.Click += MinusSoLuong_click; // tạo hiện tượng click
 
-                fpnlSanPham.Controls.Add(pnlCover);
+                fpnlSanPham.Controls.Add(pnlCover); // add vào flowlayoutpanel
 
             }
 
 
         }
-
+        //hàm btXoaSanPham click
         private void XoaSanPham_click(object sender, EventArgs e)
         {
 
@@ -199,26 +204,27 @@ namespace Project_WInForm
             
 
         }
-
+        //hàm load lại giá và số lượng
         private void reloadPriceAndAmount(Button bt)
         {
             listLabelSoLuong[Convert.ToInt32(bt.Tag)].Text = parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong.ToString();
             listLabelPrice[Convert.ToInt32(bt.Tag)].Text = parent.ListGioHang[Convert.ToInt32(bt.Tag)].Size + "  |  " + (Convert.ToDouble(parent.ListGioHang[Convert.ToInt32(bt.Tag)].Dongia) * parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong).ToString();
         }
-
+        // Hàm load lại tổng tiền
         private void reloadTotalPrice()
         {
 
             double kq = 0;
             foreach (GioHangDTO donhang in parent.ListGioHang)
             {
-                kq += Convert.ToDouble(donhang.Dongia) * donhang.Soluong;
+                
+                kq += Convert.ToDouble(donhang.Dongia) * donhang.Soluong; // lấy số lượng và giá của các biến trong ListGioHang nhân cho nhau
             }
 
             lbTotalPrice.Text = "Thành Tiền: " + kq.ToString();
 
         }
-
+        // Hàm trừ số lượng click
         private void MinusSoLuong_click(object sender, EventArgs e)
         {
 
@@ -229,8 +235,8 @@ namespace Project_WInForm
 
 
                 parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong -= 1;
-                reloadPriceAndAmount(bt);
-                reloadTotalPrice();
+                reloadPriceAndAmount(bt); // reload load lại giá và số lượng
+                reloadTotalPrice(); //reload lại tổng tiền
             }
             else
             {
@@ -239,7 +245,7 @@ namespace Project_WInForm
             }
 
         }
-
+        //Hàm btCong so lượng Click
         private void PlusSoLuong_click(object sender, EventArgs e)
         {
 
@@ -247,13 +253,13 @@ namespace Project_WInForm
             if (parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong >= 1)
             {
                 parent.ListGioHang[Convert.ToInt32(bt.Tag)].Soluong += 1;
-                reloadPriceAndAmount(bt);
-                reloadTotalPrice();
+                reloadPriceAndAmount(bt);// reload load lại giá và số lượng
+                reloadTotalPrice();//reload lại tổng tiền
             }
 
 
         }
-
+        //Hàm REsize Form
         private void resizeForm()
         {
 
@@ -293,7 +299,7 @@ namespace Project_WInForm
             parent.reloadSoluong();
             this.Close();
         }
-
+        //Hàm btPay_click
         private void btPay_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn thanh toán chứ ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -320,7 +326,7 @@ namespace Project_WInForm
                 MessageBox.Show("Đơn Hàng đã được gửi đi. Vui lòng xác nhận khi được gọi điện.");
             }
         }
-
+        //hàm lấy id sản phẩm
         private void getListProductID()
         {
             foreach (GioHangDTO donhang in parent.ListGioHang)
@@ -329,7 +335,8 @@ namespace Project_WInForm
                 {
                     if(donhang.ProductName == product.ProductName)
                     {
-                        listProductID.Add(product.ProductID);
+                        //Nếu biến donhang trong listGioHang có giá trị ProductName bằng với biến product trong ListProduct
+                        listProductID.Add(product.ProductID); // ad vào ListProductID
                     }
                 }
             }

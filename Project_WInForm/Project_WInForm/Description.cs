@@ -21,7 +21,7 @@ namespace Project_WInForm
         //khoi tao productdto
         ProductDTO product = new ProductDTO();
 
-        //khoi tao balSize
+        //khoi tao biến sizeBal trong class SizzeInforBAL
         SizeInfoBAL sizeBAL = new SizeInfoBAL();
 
         //bien kiem tra ton tai san pham trong gio hang
@@ -281,16 +281,16 @@ namespace Project_WInForm
             pnBigImage.Location = new Point(Convert.ToInt32((pnMain.Location.X) + (pnMain.Width / 6)),pnMain.Location.Y);
             
         }
-        
+        //hàm setup giao diện cho panel bên cái
         private void setupUIPnlLeft()
         {
-
+            //pnlLeft tao bằng pnlImage,ngang = form.width - pnImage.width
             pnlLeft.Height = pnBigImage.Height;
             pnlLeft.Width = this.Width - pnBigImage.Width;
-
+            //pnlImage1 chieu cao bang pnlLeft.heigth*0.3,width = 70% pnlLeft
             pbxImage1.Width = pbxImage2.Width = Convert.ToInt32(pnlLeft.Width * 0.7);
             pbxImage1.Height = pbxImage2.Height = Convert.ToInt32(pnlLeft.Height * 0.3);
-
+            // chỉnh vị trí của pnlImage1 và pnlImage 2
             pbxImage1.Location = new Point(Convert.ToInt32(pnlLeft.Width * 0.15), Convert.ToInt32(pnlLeft.Height * 0.15));
             pbxImage2.Location = new Point(pbxImage1.Location.X, Convert.ToInt32((pnlLeft.Height * 0.55)));
 
